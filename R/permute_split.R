@@ -1,6 +1,15 @@
 #===========================================================================
 # Permutes input data by whole rows, that is, permute the time course of all ROIs together
 
+#' permute_split
+#'
+#' @param data
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
 permute_split = function(data){
 
   # data = data to be read into the function

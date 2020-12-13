@@ -1,10 +1,28 @@
-# Import functions
+#===========================================================================
+# The main function that calls all other functions FaBi Search
+
+#' FaBiSearch
+#'
 #' @importFrom doParallel registerDoParallel
 #' @importFrom utils write.csv
 #' @importFrom parallel detectCores
-
-#===========================================================================
-# The main function that calls all other functions FaBi Search
+#'
+#' @param output.name
+#' @param data
+#' @param which.subj
+#' @param n.subj
+#' @param min.dist
+#' @param n.rep
+#' @param alpha
+#' @param method.rank
+#' @param n.runs
+#' @param alg.type
+#' @param test.type
+#'
+#' @return
+#' @export
+#'
+#' @examples
 
 FaBiSearch = function(output.name, data, which.subj, n.subj=NULL, T=NULL, min.dist, n.rep, alpha, method.rank, n.runs, alg.type, test.type){
 

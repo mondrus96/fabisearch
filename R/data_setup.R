@@ -1,6 +1,16 @@
 #===========================================================================
 # This function prepares the data for the other functions
 
+#' data_setup
+#'
+#' @param data
+#' @param n.subj
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
 data_setup = function(data,n.subj,T){
 
   # data   = data set

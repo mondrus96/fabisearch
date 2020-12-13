@@ -1,8 +1,24 @@
-# Import functions
-#' @importFrom NMF nmf
-
 #===========================================================================
 # This function splits the time course into partitions exhaustively based on NMF
+
+#' split_all
+#'
+#' @importFrom NMF nmf
+#'
+#' @param data
+#' @param split.index
+#' @param lower
+#' @param upper
+#' @param x
+#' @param min.dist
+#' @param n.runs
+#' @param n.rank
+#' @param alg.type
+#'
+#' @return
+#' @export
+#'
+#' @examples
 
 split_all = function(data, split.index, lower, upper, x, min.dist, n.runs, n.rank, alg.type){
 

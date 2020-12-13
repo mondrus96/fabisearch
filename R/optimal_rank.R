@@ -1,8 +1,18 @@
-# Import functions
-#' @importFrom NMF nmf
-
 #===========================================================================
 # This function finds the optimal rank for the given subject using the change in loss method
+
+#' optimal_rank
+#'
+#' @importFrom NMF nmf
+#'
+#' @param curr.subj
+#' @param n.runs
+#' @param alg.type
+#'
+#' @return
+#' @export
+#'
+#' @examples
 
 optimal_rank = function(curr.subj, n.runs, alg.type){
 

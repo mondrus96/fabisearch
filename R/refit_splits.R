@@ -1,8 +1,21 @@
-# Import functions
-#' @importFrom NMF nmf
-
 #===========================================================================
 # Recalculates the NMF basis matrix difference between each pair of splits
+
+#' refit_splits
+#'
+#' @importFrom NMF nmf
+#'
+#' @param orig.splits
+#' @param curr.subj
+#' @param x
+#' @param n.rep
+#' @param n.rank
+#' @param alg.type
+#'
+#' @return
+#' @export
+#'
+#' @examples
 
 refit_splits = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type){
 

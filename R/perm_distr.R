@@ -1,8 +1,21 @@
-# Import functions
-#' @importFrom NMF nmf
-
 #===========================================================================
 # Builds the permutation distrubtion
+
+#' perm_distr
+#'
+#' @importFrom NMF nmf
+#'
+#' @param orig.splits
+#' @param curr.subj
+#' @param x
+#' @param n.rep
+#' @param n.rank
+#' @param alg.type
+#'
+#' @return
+#' @export
+#'
+#' @examples
 
 perm_distr = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type) {
 

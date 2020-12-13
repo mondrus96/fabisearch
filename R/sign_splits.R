@@ -1,6 +1,19 @@
 #===========================================================================
 # Finds significant splits using the permutation distribution
 
+#' sign_splits
+#'
+#' @param orig.splits
+#' @param refit.splits
+#' @param perm.distr
+#' @param alpha
+#' @param test.type
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
 sign_splits = function(orig.splits, refit.splits, perm.distr, alpha, test.type){
 
   # refit.splits  = loss for refitted split values
