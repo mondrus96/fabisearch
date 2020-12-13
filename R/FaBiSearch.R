@@ -7,17 +7,17 @@
 #' @importFrom utils write.csv
 #' @importFrom parallel detectCores
 #'
-#' @param output.name
-#' @param data
-#' @param which.subj
-#' @param n.subj
-#' @param min.dist
-#' @param n.rep
-#' @param alpha
-#' @param method.rank
-#' @param n.runs
-#' @param alg.type
-#' @param test.type
+#' @param output.name What to call the output - note, NO NEED TO PUT FILE EXTENSION NAME (e.g. ".csv").
+#' @param data Dataset to be analyzed, should be in a matrix format with timepoints in rows and variables in columns.
+#' @param which.subj Which subjects to analyze, vector (e.g., 1:4). If left unspecified, then all subjects are considered.
+#' @param n.subj Total number of subjects in the dataset.
+#' @param min.dist Minimum distance between change points.
+#' @param n.rep Number of repetitions for bootstrapping procedure.
+#' @param alpha Significance level cutoff for deciding whether to retain change points or not (e.g., 0.05 or 0.01)
+#' @param method.rank Specifies whether to find rank using optimization procedure (specify "optimal") or use a predetermined rank (integer value, e.g., 4)
+#' @param n.runs Number of runs to use for NMF function
+#' @param alg.type Type of algorithm for NMF function -> check ?nmf for details, under "method"
+#' @param test.type Type of statistical test to run, "t-test" for simple t-test (using alpha, returns TRUE/FALSE), or "pval.t-test" to return the probability value for the t-test (no cutoff)
 #'
 #' @return
 #' @export
@@ -37,7 +37,7 @@ FaBiSearch = function(output.name, data, which.subj, n.subj=NULL, T=NULL, min.di
   # method.rank = method type for determining rank value, can be an integer, vector, or string depending on
   # n.runs      = n.runs to try the NMF algorithm for, the higher the more exhaustive the search for an optimal matrix is
   # alg.type    = algorithm type -> check ?nmf for details, under "method"
-  # test.type   = type of statistical test to run -> "ks" for the Kolmogorov-Smirnov, and "wilcox" for the Wilcoxon test
+  # test.type   = type of statistical test to run, "t-test" for simple t-test (using alpha, returns TRUE/FALSE), or "pval.t-test" to return the probability value for the t-test (no cutoff)
 
   # Parallelization setup
   n.cores = detectCores()
