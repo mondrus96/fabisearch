@@ -1,6 +1,7 @@
 # Import functions
 #' @importFrom doParallel registerDoParallel
 #' @importFrom utils write.csv
+#' @importFrom parallel detectCores
 
 #===========================================================================
 # The main function that calls all other functions FaBi Search
@@ -21,7 +22,7 @@ FaBiSearch = function(output.name, data, which.subj, n.subj=NULL, T=NULL, min.di
   # test.type   = type of statistical test to run -> "ks" for the Kolmogorov-Smirnov, and "wilcox" for the Wilcoxon test
 
   # Parallelization setup
-  n.cores = strtoi(Sys.getenv('SLURM_CPUS_PER_TASK'))
+  n.cores = detectCores()
   registerDoParallel(n.cores)
   print(n.cores)
 
