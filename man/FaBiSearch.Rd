@@ -20,7 +20,27 @@ FaBiSearch(
 )
 }
 \arguments{
-\item{test.type}{}
+\item{output.name}{What to call the output - note, NO NEED TO PUT FILE EXTENSION NAME (e.g. ".csv").}
+
+\item{data}{Dataset to be analyzed, should be in a matrix format with timepoints in rows and variables in columns.}
+
+\item{which.subj}{Which subjects to analyze, vector (e.g., 1:4). If left unspecified, then all subjects are considered.}
+
+\item{n.subj}{Total number of subjects in the dataset.}
+
+\item{min.dist}{Minimum distance between change points.}
+
+\item{n.rep}{Number of repetitions for bootstrapping procedure.}
+
+\item{alpha}{Significance level cutoff for deciding whether to retain change points or not (e.g., 0.05 or 0.01)}
+
+\item{method.rank}{Specifies whether to find rank using optimization procedure (specify "optimal") or use a predetermined rank (integer value, e.g., 4)}
+
+\item{n.runs}{Number of runs to use for NMF function}
+
+\item{alg.type}{Type of algorithm for NMF function -> check ?nmf for details, under "method"}
+
+\item{test.type}{Type of statistical test to run, "t-test" for simple t-test (using alpha, returns TRUE/FALSE), or "pval.t-test" to return the probability value for the t-test (no cutoff)}
 }
 \value{
 
