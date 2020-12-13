@@ -2,4 +2,5 @@
 
 importFrom(NMF,nmf)
 importFrom(doParallel,registerDoParallel)
+importFrom(parallel,detectCores)
 importFrom(utils,write.csv)
