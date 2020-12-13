@@ -1,0 +1,114 @@
+# Import functions
+#' @importFrom doParallel registerDoParallel
+#' @importFrom utils write.csv
+
+#===========================================================================
+# The main function that calls all other functions FaBi Search
+
+FaBiSearch = function(output.name, data, which.subj, n.subj=NULL, T=NULL, min.dist, n.rep, alpha, method.rank, n.runs, alg.type, test.type){
+
+  # output.name = what to call the output - note, NO NEED TO PUT FILE EXTENSION NAME (e.g. ".csv")
+  # data        = data set to be analyzed
+  # which.subj  = which subjects to analyze, vector (e.g. 1:4)
+  # n.subj      = number of subjects in the data set
+  # T           = number of time points in the data set
+  # min.dist    = the minimum distance between change points
+  # n.rep       = number of replications in the bootstrap procedures
+  # alpha       = level of significance for statistical inference
+  # method.rank = method type for determining rank value, can be an integer, vector, or string depending on
+  # n.runs      = n.runs to try the NMF algorithm for, the higher the more exhaustive the search for an optimal matrix is
+  # alg.type    = algorithm type -> check ?nmf for details, under "method"
+  # test.type   = type of statistical test to run -> "ks" for the Kolmogorov-Smirnov, and "wilcox" for the Wilcoxon test
+
+  # Parallelization setup
+  n.cores = strtoi(Sys.getenv('SLURM_CPUS_PER_TASK'))
+  registerDoParallel(n.cores)
+  print(n.cores)
+
+  # If one of n.subj or T is NULL, we can use the other to calculate it
+  if (is.null(n.subj)){
+    n.subj = nrow(data)/T
+  }
+  if (is.null(T)){
+    T = nrow(data)/n.subj
+  }
+
+  # If which.subj is NULL, assume all subjects to be calculated
+  if (is.null(which.subj)){
+    which.subj = 1:n.subj
+  }
+
+  # Define data.list usine data_setup function
+  data.list = data_setup(data, n.subj, T)
+
+  # Initialize lower, upper, and define time series -> required for Recall function to work correctly
+  lower = 1
+  upper = T
+  x = 1:T
+
+  # Create the ALL.SPLITS variable which will hold all results
+  ALL.SPLITS = list()
+
+  # Main loop that goes through selected subjects
+  for (j in which.subj) {
+    # Setting seed using the subject iterator
+    set.seed(123*j)
+
+    # Start timer for finding how long it took to compute everything for this subject
+    compute.T.start = Sys.time()
+
+    # Define the current subject to be evaluated in this loop
+    curr.subj = as.matrix(data.list[[j]])
+
+    # If rank has not been specified, then it must be found
+    if (method.rank == "optimal"){
+      n.rank = optimal_rank(curr.subj, n.runs, alg.type)
+    } else {
+      n.rank = method.rank
+      print(paste("User defined rank:", n.rank))
+    }
+
+    # Define split.index and optimal.ranks, need to define outside of function so "Recall" works inside the function
+    split.index   = c()
+    # Define the original splits
+    orig.splits = split_all(curr.subj, split.index, lower, upper, x, min.dist, n.runs, n.rank, alg.type)
+
+    # Define the refitted splits
+    refit.splits = refit_splits(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type)
+
+    # Define the permutation distribution to compare with refitted splits
+    perm.distr = perm_distr(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type)
+
+    # Determine which splits are significant
+    sign.splits = sign_splits(orig.splits, refit.splits, perm.distr, alpha, test.type)
+
+    # End timer
+    compute.T.end = Sys.time()
+
+    # Define rest of variables for final output, define and use num.rows to determine length
+    num.rows = nrow(sign.splits)
+    if(is.numeric(method.rank[1])){
+      rank.selection = "user input"
+    } else {
+      rank.selection = method.rank[1]
+    }
+
+    rank.selection       = rep(rank.selection, num.rows)
+    rank                 = rep(n.rank, num.rows)
+    algorithm.type       = rep(alg.type, num.rows)
+    number.runs          = rep(n.runs, num.rows)
+    repetitions          = rep(n.rep, num.rows)
+    subject              = rep(j, num.rows)
+    subject.compute.time = rep(difftime(compute.T.end, compute.T.start, units="mins"), num.rows)
+
+    # Save all results for current subject as final.output
+    final.output = cbind(subject, rank.selection, n.rank, number.runs, sign.splits, repetitions, algorithm.type, subject.compute.time)
+
+    # Save and print all current results
+    ALL.SPLITS = rbind(ALL.SPLITS, final.output)
+    print(ALL.SPLITS)
+
+    # Save the output as a csv
+    write.csv(ALL.SPLITS, paste(output.name, ".csv", sep=""))
+  }
+}
