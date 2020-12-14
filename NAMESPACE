@@ -2,6 +2,7 @@
 
 export(FaBiSearch)
 export(data_setup)
+export(estimate_network)
 export(optimal_rank)
 export(perm_distr)
 export(permute_split)
