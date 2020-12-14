@@ -20,17 +20,17 @@ FaBiSearch(
 )
 }
 \arguments{
-\item{output.name}{What to call the output - note, NO NEED TO PUT FILE EXTENSION NAME (e.g. ".csv").}
+\item{output.name}{What to call the output - note, NO NEED TO PUT FILE EXTENSION NAME (e.g. ".csv")}
 
-\item{data}{Dataset to be analyzed, should be in a matrix format with timepoints in rows and variables in columns.}
+\item{data}{Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
 
-\item{which.subj}{Which subjects to analyze, vector (e.g., 1:4). If left unspecified, then all subjects are considered.}
+\item{which.subj}{Which subjects to analyze, vector (e.g., 1:4). If left unspecified, then all subjects are considered}
 
-\item{n.subj}{Total number of subjects in the dataset.}
+\item{n.subj}{Total number of subjects in the dataset}
 
-\item{min.dist}{Minimum distance between change points.}
+\item{min.dist}{Minimum distance between change points}
 
-\item{n.rep}{Number of repetitions for bootstrapping procedure.}
+\item{n.rep}{Number of repetitions for bootstrapping procedure}
 
 \item{alpha}{Significance level cutoff for deciding whether to retain change points or not (e.g., 0.05 or 0.01)}
 
@@ -40,11 +40,23 @@ FaBiSearch(
 
 \item{alg.type}{Type of algorithm for NMF function -> check ?nmf for details, under "method"}
 
-\item{test.type}{Type of statistical test to run, "t-test" for simple t-test (using alpha, returns TRUE/FALSE), or "pval.t-test" to return the probability value for the t-test (no cutoff)}
+\item{test.type}{Type of statistical test to run, "t-test" for simple t-test (using \code{alpha}, returns \code{TRUE/FALSE}), or "pval.t-test" to
+return the probability value for the t-test (no cutoff)}
 }
 \value{
-
+A \code{.csv} file of change points detected. Each row is a unique change point detected in the input multivariate time series, and contains the following columns:\cr
+\code{subject}: subject number\cr
+\code{rank.selection}: method used to determine rank\cr
+\code{n.rank}: rank used for NMF and the change point estimation process\cr
+\code{number.runs}: number of runs used for NMF and the change point estimation process\cr
+\code{T.split}: time point where change point was detected\cr
+\code{significant}: either the \eqn{p} value of the change point, or a boolean \code{TRUE/FALSE} whether this change point is kept using \code{alpha} as the
+cutoff value\cr
+\code{repetitions}: number of bootstrap repetitions for inference step\cr
+\code{algorithm.type}: type of algorithm used by the NMF function\cr
+\code{subject.compute.time}: time, in minutes, to compute change points for the corresponding subject\cr
 }
 \description{
-FaBiSearch
+This is the main FaBiSearch function which takes a multivariate time series, \eqn{T}, and returns change points detected. Utilizes non-negative
+factorization (NMF) to detect changes in clustering structure.
 }

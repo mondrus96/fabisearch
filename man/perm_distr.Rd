@@ -7,11 +7,22 @@
 perm_distr(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type)
 }
 \arguments{
-\item{alg.type}{}
+\item{orig.splits}{Matrix of candidate change points (\code{T.split}) and the change in loss (\code{chg.loss})}
+
+\item{curr.subj}{Multivariate time series data from the current subject}
+
+\item{x}{Time series of data}
+
+\item{n.rep}{Number of repetitions for bootstrapping procedure}
+
+\item{n.rank}{Rank value for NMF function}
+
+\item{alg.type}{Type of algorithm for NMF function -> check ?nmf for details, under "method"}
 }
 \value{
-
+List where each element is a unique change point and contains a vector of loss values from the permuted NMF calculations
 }
 \description{
-perm_distr
+This function is embedded in the main FaBiSearch function. It serves to generate a null distribution by permuting the bounded section for each change
+point and calculating the loss using NMF.
 }

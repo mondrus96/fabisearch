@@ -2,14 +2,18 @@
 # Finds significant splits using the permutation distribution
 
 #' sign_splits
+#' @description This function is embedded in the main FaBiSearch function. It serves to compare the loss for the refitted splits to those of the permuted splits
+#' and determine whether the loss is significantly lower for the refitted splits.
 #'
-#' @param orig.splits
-#' @param refit.splits
-#' @param perm.distr
-#' @param alpha
-#' @param test.type
+#' @param orig.splits Matrix of candidate change points (\code{T.split}) and the change in loss (\code{chg.loss})
+#' @param refit.splits List of refitted split loss values
+#' @param perm.distr List of permuted split loss values
+#' @param alpha Cuttoff value for statistical inference (e.g., 0.05 or 0.01)
+#' @param test.type Type of statistical test to run, "t-test" for simple t-test (using \code{alpha}, returns \code{TRUE/FALSE}), or "pval.t-test" to
+#' return the probability value for the t-test (no cutoff)
 #'
-#' @return
+#' @return \code{final.splits}, a matrix with columns \code{T.split} for the position of the candidate change point, and \code{significant} for result of the two sided
+#' \eqn{t}-test
 #' @export
 #'
 #' @examples
@@ -19,7 +23,7 @@ sign_splits = function(orig.splits, refit.splits, perm.distr, alpha, test.type){
   # refit.splits  = loss for refitted split values
   # perm.distr    = permutation distribution
   # alpha         = level of significance for statistical inference
-  # test.type   = type of statistical test to run -> "ks" for the Kolmogorov-Smirnov, and "wilcox" for the Wilcoxon test
+  # test.type     = type of statistical test to run -> "ks" for the Kolmogorov-Smirnov, and "wilcox" for the Wilcoxon test
 
   # Find the splits where the loss metric is reduced, define the final.splits dataframe
   reduced.splits = sort(orig.splits[orig.splits$chg.loss < 0, ]$T.split)

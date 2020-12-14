@@ -17,11 +17,29 @@ split_all(
 )
 }
 \arguments{
-\item{alg.type}{}
+\item{data}{Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
+
+\item{split.index}{Empty vector for saving results}
+
+\item{lower}{Lower limit of split}
+
+\item{upper}{Upper limit of split}
+
+\item{x}{Time series of data}
+
+\item{min.dist}{Minimum distance between change points}
+
+\item{n.runs}{Number of runs to use for NMF function}
+
+\item{n.rank}{Rank value for NMF function}
+
+\item{alg.type}{Type of algorithm for NMF function -> check ?nmf for details, under "method"}
 }
 \value{
-
+Dataframe of two columns, "T.split" which denotes the time of the candidate change point and "chg.loss" which denotes the change in loss from splitting the
+data at the respective candidate change point
 }
 \description{
-split_all
+This function is embedded in the main FaBiSearch function. It serves to split the time course into partitions exhaustively based on NMF, using the modified
+binary search approach.
 }

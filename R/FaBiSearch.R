@@ -2,24 +2,37 @@
 # The main function that calls all other functions FaBi Search
 
 #' FaBiSearch
+#' @description This is the main FaBiSearch function which takes a multivariate time series, \eqn{T}, and returns change points detected. Utilizes non-negative
+#' factorization (NMF) to detect changes in clustering structure.
 #'
 #' @importFrom doParallel registerDoParallel
 #' @importFrom utils write.csv
 #' @importFrom parallel detectCores
 #'
-#' @param output.name What to call the output - note, NO NEED TO PUT FILE EXTENSION NAME (e.g. ".csv").
-#' @param data Dataset to be analyzed, should be in a matrix format with timepoints in rows and variables in columns.
-#' @param which.subj Which subjects to analyze, vector (e.g., 1:4). If left unspecified, then all subjects are considered.
-#' @param n.subj Total number of subjects in the dataset.
-#' @param min.dist Minimum distance between change points.
-#' @param n.rep Number of repetitions for bootstrapping procedure.
+#' @param output.name What to call the output - note, NO NEED TO PUT FILE EXTENSION NAME (e.g. ".csv")
+#' @param data Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
+#' @param which.subj Which subjects to analyze, vector (e.g., 1:4). If left unspecified, then all subjects are considered
+#' @param n.subj Total number of subjects in the dataset
+#' @param min.dist Minimum distance between change points
+#' @param n.rep Number of repetitions for bootstrapping procedure
 #' @param alpha Significance level cutoff for deciding whether to retain change points or not (e.g., 0.05 or 0.01)
 #' @param method.rank Specifies whether to find rank using optimization procedure (specify "optimal") or use a predetermined rank (integer value, e.g., 4)
 #' @param n.runs Number of runs to use for NMF function
 #' @param alg.type Type of algorithm for NMF function -> check ?nmf for details, under "method"
-#' @param test.type Type of statistical test to run, "t-test" for simple t-test (using alpha, returns TRUE/FALSE), or "pval.t-test" to return the probability value for the t-test (no cutoff)
+#' @param test.type Type of statistical test to run, "t-test" for simple t-test (using \code{alpha}, returns \code{TRUE/FALSE}), or "pval.t-test" to
+#' return the probability value for the t-test (no cutoff)
 #'
-#' @return
+#' @return A \code{.csv} file of change points detected. Each row is a unique change point detected in the input multivariate time series, and contains the following columns:\cr
+#' \code{subject}: subject number\cr
+#' \code{rank.selection}: method used to determine rank\cr
+#' \code{n.rank}: rank used for NMF and the change point estimation process\cr
+#' \code{number.runs}: number of runs used for NMF and the change point estimation process\cr
+#' \code{T.split}: time point where change point was detected\cr
+#' \code{significant}: either the \eqn{p} value of the change point, or a boolean \code{TRUE/FALSE} whether this change point is kept using \code{alpha} as the
+#' cutoff value\cr
+#' \code{repetitions}: number of bootstrap repetitions for inference step\cr
+#' \code{algorithm.type}: type of algorithm used by the NMF function\cr
+#' \code{subject.compute.time}: time, in minutes, to compute change points for the corresponding subject\cr
 #' @export
 #'
 #' @examples

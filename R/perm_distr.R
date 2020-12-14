@@ -2,17 +2,19 @@
 # Builds the permutation distrubtion
 
 #' perm_distr
+#' @description This function is embedded in the main FaBiSearch function. It serves to generate a null distribution by permuting the bounded section for each change
+#' point and calculating the loss using NMF.
 #'
 #' @importFrom NMF nmf
 #'
-#' @param orig.splits
-#' @param curr.subj
-#' @param x
-#' @param n.rep
-#' @param n.rank
-#' @param alg.type
+#' @param orig.splits Matrix of candidate change points (\code{T.split}) and the change in loss (\code{chg.loss})
+#' @param curr.subj Multivariate time series data from the current subject
+#' @param x Time series of data
+#' @param n.rep Number of repetitions for bootstrapping procedure
+#' @param n.rank Rank value for NMF function
+#' @param alg.type Type of algorithm for NMF function -> check ?nmf for details, under "method"
 #'
-#' @return
+#' @return List where each element is a unique change point and contains a vector of loss values from the permuted NMF calculations
 #' @export
 #'
 #' @examples

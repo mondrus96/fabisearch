@@ -7,11 +7,22 @@
 sign_splits(orig.splits, refit.splits, perm.distr, alpha, test.type)
 }
 \arguments{
-\item{test.type}{}
+\item{orig.splits}{Matrix of candidate change points (\code{T.split}) and the change in loss (\code{chg.loss})}
+
+\item{refit.splits}{List of refitted split loss values}
+
+\item{perm.distr}{List of permuted split loss values}
+
+\item{alpha}{Cuttoff value for statistical inference (e.g., 0.05 or 0.01)}
+
+\item{test.type}{Type of statistical test to run, "t-test" for simple t-test (using \code{alpha}, returns \code{TRUE/FALSE}), or "pval.t-test" to
+return the probability value for the t-test (no cutoff)}
 }
 \value{
-
+\code{final.splits}, a matrix with columns \code{T.split} for the position of the candidate change point, and \code{significant} for result of the two sided
+\eqn{t}-test
 }
 \description{
-sign_splits
+This function is embedded in the main FaBiSearch function. It serves to compare the loss for the refitted splits to those of the permuted splits
+and determine whether the loss is significantly lower for the refitted splits.
 }

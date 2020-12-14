@@ -2,10 +2,12 @@
 # Permutes input data by whole rows, that is, permute the time course of all ROIs together
 
 #' permute_split
+#' @description This function is embedded in the main FaBiSearch function. It serves to permute the input data by whole rows, that is, permute the time course of all ROIs
+#' together
 #'
-#' @param data
+#' @param data Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
 #'
-#' @return
+#' @return Permuted version of the original multivariate time series, \eqn{T}
 #' @export
 #'
 #' @examples

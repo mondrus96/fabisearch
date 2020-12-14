@@ -2,11 +2,14 @@
 # This function prepares the data for the other functions
 
 #' data_setup
+#' @description This function is embedded in the main FaBiSearch function. It serves to take the original input time series, \eqn{T}, and conver it into a more convenient
+#' list format. Note, this assumes that timecourse length for each subject is the same.
 #'
-#' @param data
-#' @param n.subj
+#' @param data Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
+#' @param n.subj Total number of subjects in the dataset
+#' @param T Number of time points in the dataset for each subject
 #'
-#' @return
+#' @return List of original data, \eqn{T}, where each element in the list is a subject and their associated multivariate time series
 #' @export
 #'
 #' @examples

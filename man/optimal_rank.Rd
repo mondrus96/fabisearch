@@ -7,11 +7,15 @@
 optimal_rank(curr.subj, n.runs, alg.type)
 }
 \arguments{
-\item{alg.type}{}
+\item{curr.subj}{Multivariate time series data from the current subject}
+
+\item{n.runs}{Number of runs to use for NMF function}
+
+\item{alg.type}{Type of algorithm for NMF function -> check ?nmf for details, under "method"}
 }
 \value{
-
+Optimal rank for the subject, an integer
 }
 \description{
-optimal_rank
+This function is embedded in the main FaBiSearch function. It serves to find the optimal rank for the given subject using the change in loss method.
 }

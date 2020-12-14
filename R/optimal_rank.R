@@ -2,14 +2,15 @@
 # This function finds the optimal rank for the given subject using the change in loss method
 
 #' optimal_rank
+#' @description This function is embedded in the main FaBiSearch function. It serves to find the optimal rank for the given subject using the change in loss method.
 #'
 #' @importFrom NMF nmf
 #'
-#' @param curr.subj
-#' @param n.runs
-#' @param alg.type
+#' @param curr.subj Multivariate time series data from the current subject
+#' @param n.runs Number of runs to use for NMF function
+#' @param alg.type Type of algorithm for NMF function -> check ?nmf for details, under "method"
 #'
-#' @return
+#' @return Optimal rank for the subject, an integer
 #' @export
 #'
 #' @examples
