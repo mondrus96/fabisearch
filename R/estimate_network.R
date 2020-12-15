@@ -6,21 +6,21 @@
 #'
 #' @importFrom NMF nmf
 #'
-#' @param data Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
+#' @param data Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
 #' @param alg.type Type of algorithm for NMF function -> check ?nmf for details, under "method"
 #' @param n.runs Number of runs to use for NMF function
 #' @param n.rank Rank value to be used in NMF calculations
 #' @param method Either "cluster" to use hierarchical clustering on the consensus matrix, or "cutoff" to use a cutoff value for the consensus matrix
 #' @param lambda Threshold parameter, relates to number of clusters if method = "cluster", or a value between 0 and 1 (inclusive) if method = "cutoff"
 #'
-#' @return Adjacency matrix noting temporal dependencies between variables from \eqn{T}
+#' @return Adjacency matrix noting temporal dependencies between variables from \eqn{Y}
 #' @export
 #'
 #' @examples
 
 estimate_network = function(data, alg.type, n.rank, n.runs, method, lambda) {
 
-  # data     = Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
+  # data     = Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
   # alg.type = Algorithm type -> check ?nmf for details, under "method"
   # n.rank   = Rank value to be used in NMF calculations
   # n.runs   = Number of runs to use for NMF function

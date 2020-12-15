@@ -7,11 +7,11 @@
 #'
 #' @importFrom NMF nmf
 #'
-#' @param data Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
+#' @param data Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
 #' @param split.index Empty vector for saving results
 #' @param lower Lower limit of split
 #' @param upper Upper limit of split
-#' @param x Time series of data
+#' @param x Index set of time series data
 #' @param min.dist Minimum distance between change points
 #' @param n.runs Number of runs to use for NMF function
 #' @param n.rank Rank value for NMF function

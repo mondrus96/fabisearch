@@ -7,7 +7,7 @@
 estimate_network(data, alg.type, n.rank, n.runs, method, lambda)
 }
 \arguments{
-\item{data}{Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
+\item{data}{Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
 
 \item{alg.type}{Type of algorithm for NMF function -> check ?nmf for details, under "method"}
 
@@ -20,7 +20,7 @@ estimate_network(data, alg.type, n.rank, n.runs, method, lambda)
 \item{lambda}{Threshold parameter, relates to number of clusters if method = "cluster", or a value between 0 and 1 (inclusive) if method = "cutoff"}
 }
 \value{
-Adjacency matrix noting temporal dependencies between variables from \eqn{T}
+Adjacency matrix noting temporal dependencies between variables from \eqn{Y}
 }
 \description{
 Compliment function to FaBiSearch. Estimates sparse stationary networks using non-negative matrix factorization (NMF).

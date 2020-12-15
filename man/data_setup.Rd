@@ -7,16 +7,16 @@
 data_setup(data, n.subj, T)
 }
 \arguments{
-\item{data}{Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
+\item{data}{Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
 
 \item{n.subj}{Total number of subjects in the dataset}
 
 \item{T}{Number of time points in the dataset for each subject}
 }
 \value{
-List of original data, \eqn{T}, where each element in the list is a subject and their associated multivariate time series
+List of original data, \eqn{Y}, where each element in the list is a subject and their associated multivariate time series
 }
 \description{
-This function is embedded in the main FaBiSearch function. It serves to take the original input time series, \eqn{T}, and conver it into a more convenient
+This function is embedded in the main FaBiSearch function. It serves to take the original input time series, \eqn{Y}, and conver it into a more convenient
 list format. Note, this assumes that timecourse length for each subject is the same.
 }

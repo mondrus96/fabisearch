@@ -2,7 +2,7 @@
 # The main function that calls all other functions FaBi Search
 
 #' FaBiSearch
-#' @description This is the main FaBiSearch function which takes a multivariate time series, \eqn{T}, and returns change points detected. Utilizes non-negative
+#' @description This is the main FaBiSearch function which takes a multivariate time series, \eqn{Y}, and returns change points detected. Utilizes non-negative
 #' factorization (NMF) to detect changes in clustering structure.
 #'
 #' @importFrom doParallel registerDoParallel
@@ -10,7 +10,7 @@
 #' @importFrom parallel detectCores
 #'
 #' @param output.name What to call the output - note, NO NEED TO PUT FILE EXTENSION NAME (e.g. ".csv")
-#' @param data Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
+#' @param data Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
 #' @param which.subj Which subjects to analyze, vector (e.g., 1:4). If left unspecified, then all subjects are considered
 #' @param n.subj Total number of subjects in the dataset
 #' @param min.dist Minimum distance between change points

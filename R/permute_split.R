@@ -5,9 +5,9 @@
 #' @description This function is embedded in the main FaBiSearch function. It serves to permute the input data by whole rows, that is, permute the time course of all ROIs
 #' together
 #'
-#' @param data Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
+#' @param data Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
 #'
-#' @return Permuted version of the original multivariate time series, \eqn{T}
+#' @return Permuted version of the original multivariate time series, \eqn{Y}
 #' @export
 #'
 #' @examples

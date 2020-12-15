@@ -9,7 +9,7 @@
 #'
 #' @param orig.splits Matrix of candidate change points (\code{T.split}) and the change in loss (\code{chg.loss})
 #' @param curr.subj Multivariate time series data from the current subject
-#' @param x Time series of data
+#' @param x Index set of time series data
 #' @param n.rep Number of repetitions for bootstrapping procedure
 #' @param n.rank Rank value for NMF function
 #' @param alg.type Type of algorithm for NMF function -> check ?nmf for details, under "method"

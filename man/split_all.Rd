@@ -17,7 +17,7 @@ split_all(
 )
 }
 \arguments{
-\item{data}{Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
+\item{data}{Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
 
 \item{split.index}{Empty vector for saving results}
 

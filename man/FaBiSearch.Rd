@@ -22,7 +22,7 @@ FaBiSearch(
 \arguments{
 \item{output.name}{What to call the output - note, NO NEED TO PUT FILE EXTENSION NAME (e.g. ".csv")}
 
-\item{data}{Multivariate time series, \eqn{T}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
+\item{data}{Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
 
 \item{which.subj}{Which subjects to analyze, vector (e.g., 1:4). If left unspecified, then all subjects are considered}
 
@@ -57,6 +57,6 @@ cutoff value\cr
 \code{subject.compute.time}: time, in minutes, to compute change points for the corresponding subject\cr
 }
 \description{
-This is the main FaBiSearch function which takes a multivariate time series, \eqn{T}, and returns change points detected. Utilizes non-negative
+This is the main FaBiSearch function which takes a multivariate time series, \eqn{Y}, and returns change points detected. Utilizes non-negative
 factorization (NMF) to detect changes in clustering structure.
 }
