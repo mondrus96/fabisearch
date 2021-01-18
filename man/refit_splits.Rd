@@ -11,7 +11,7 @@ refit_splits(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type)
 
 \item{curr.subj}{Multivariate time series data from the current subject}
 
-\item{x}{Time series of data}
+\item{x}{Index set of time series data}
 
 \item{n.rep}{Number of repetitions for bootstrapping procedure}
 

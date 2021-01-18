@@ -30,11 +30,13 @@ The purpose of this package is to enable functionality to use **Fa**ctorized **B
 * foreach
 * utils
 * parallel
+* rgl
+* reshape2
+
 
 The remainder of this document is outlined as follows - we will first describe the computational workflow for change point detection and network estimation, then we describe the two main functions of this package.
 
 # Computational Workflow
-
 
 ```{r echo=FALSE, out.width='70%', fig.align = 'center'}
 knitr::include_graphics('workflowcartoon.png')
@@ -42,13 +44,19 @@ knitr::include_graphics('workflowcartoon.png')
 
 # Main Functions
 
-There are two main functions which are useful in a multivariate time series context. The first is ```FaBiSearch()``` which is used for change point estimation, and the second is ```estimate_network()``` which is used for estimating an adjacency matrix for network estimation from a stationary multivariate time series.
+There are two main functions which are useful in a multivariate time series context. The first is ```FaBiSearch()``` which is used for change point estimation, and the second is ```estimate_network()``` which is used for estimating an adjacency matrix for network estimation from a stationary multivariate time series. We also include a ```plot_network()``` function which plots the estimated stationary network according to cortical atlas of @Gordon2016.
 
 ## Change Point Detection
 
 ### Overview
 
 The ```FaBiSearch()``` function enables the discovery of change points in a multivariate time series, $Y$, and in this section we discuss the associated options and hyperparameters for the ```FaBiSearch()``` function. We will also discuss the output table from ```FaBiSearch()```.
+
+We utilize non-negative matrix factorization (NMF) to model the multivariate time series as a factor of lower dimensional projections, $W$ and $H$.
+
+```{r echo=FALSE, out.width='70%', fig.align = 'center'}
+knitr::include_graphics('NMFgeneral.png')
+```
 
 The main intuition behind FaBiSearch is that it works to detect changes in clustering structure in $Y$. By evaluating . To improve computational efficiency, FaBiSearch employs a modified binary search method so that the all possible change points do not have to be evaluated and instead find the point of minimum loss, $L$, iteratively. After all candidate change points have been found in a tree-like fashion, we conduct a statistical inference step to determine which change points to retain. Consequently, FaBiSearch is unconstrained to the dimensionality of the original time series $Y$ and thus can be applied for high dimensional problems where the number of variables is in the 100s or 1000s.
 
@@ -57,7 +65,7 @@ The main intuition behind FaBiSearch is that it works to detect changes in clust
 Main Options:
 
 * ```output.name```: Name for the output output - note, there is no need to add an extension (e.g. "```.csv```"). All outputs from FaBiSearch will be in a ```.csv``` format. 
-* ```data```: Multivariate time series, $Y$, to be analyzed, should be in a matrix format with time points in rows and variables in columns. ```FaBiSearch()``` can also sequentially compute change points across multiple subjects. If the dataset contains multiple subjects, the subjects must be concatenated end to end by rows, that is, after the first subject's matrix ends, the next row is the second subject's first time point, and so on and so forth.
+* ```data```: Multivariate time series, $Y$, to be analyzed, should be in a matrix format with time points in rows and variables in columns. Since NMF is being used to model the time series, all entries in the input matrix must be non-negative. ```FaBiSearch()``` can also sequentially compute change points across multiple subjects. If the dataset contains multiple subjects, the subjects must be concatenated end to end by rows, that is, after the first subject's matrix ends, the next row is the second subject's first time point, and so on and so forth.
 * ```which.subj```: Which subjects to analyze in a vector format (e.g., 1:4 to analyze subjects 1 to 4). If left unspecified, then all subjects are considered.
 * ```n.subj```: Total number of subjects in the dataset. If there is only one subject to anaylze, please specify 1.
 
@@ -110,6 +118,26 @@ Algorithm Hyperparameters:
 ### Output
 
 The ```estimate_network()``` function returns an adjacency matrix, or matrix of boolean values if two nodes share an edge (1) or not (0). 
+
+## Stationary Network Estimation
+
+### Overview
+
+The ```plot_network()``` function uses a @Gordon2016 atlas defined adjacency matrix and returns a 3D plot of the estimated stationary network of this adjacency matrix. Nodes are colored by membership in one of the 13 @Gordon2016 defined communities. Users can choose to plot only specific communities, and can also specify colors for these communities.
+
+### Inputs
+
+* ```adj.matrix```: 333 by 333 adjacency matrix, using the @Gordon2016 atlas to define nodes
+* ```communities```: Vector of communities from the Gordon atlas to include in the plot (Any combination of "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc", "VentralAttn", "Salience", "DorsalAttn)
+* ```colors```: Vector of hex codes for node colors to distinguish each community - by default, each community is given a predefined color
+
+### Output
+
+A 3D plot of the estimated stationary network from the adjacency matrix. This plot includes a 3D "frame" of the cortex, edges colored in black, nodes colored based on community membership, and a legend related node colors to community membership. Please see the example below of a plot generated by this function:
+
+```{r echo=FALSE, out.width='70%', fig.align = 'center'}
+knitr::include_graphics('brainplotexample.png')
+```
 
 # Supporting Functions
 

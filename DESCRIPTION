@@ -22,5 +22,9 @@ Imports:
     doParallel,
     foreach,
     utils,
-    parallel
+    parallel,
+    rgl,
+    reshape2
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)

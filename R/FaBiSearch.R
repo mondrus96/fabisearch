@@ -1,5 +1,5 @@
 #===========================================================================
-# The main function that calls all other functions FaBi Search
+# The main function that calls all other functions FaBiSearch
 
 #' FaBiSearch
 #' @description This is the main FaBiSearch function which takes a multivariate time series, \eqn{Y}, and returns change points detected. Utilizes non-negative

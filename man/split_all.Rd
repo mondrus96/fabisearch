@@ -25,7 +25,7 @@ split_all(
 
 \item{upper}{Upper limit of split}
 
-\item{x}{Time series of data}
+\item{x}{Index set of time series data}
 
 \item{min.dist}{Minimum distance between change points}
 
