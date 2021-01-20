@@ -4,7 +4,7 @@
 #' plot_network
 #' @description This function uses a Gordon atlas defined adjacency matrix and returns a 3D plot of the estimated stationary network of this adjacency matrix
 #'
-#' @importFrom rgl par3d mfrow3d plot3d lines3d
+#' @importFrom rgl par3d mfrow3d plot3d lines3d legend3d
 #' @importFrom reshape2 melt
 #' @importFrom utils read.csv
 #'
@@ -41,8 +41,8 @@ plot_network = function(adj.matrix, communities=NULL, colors=NULL){
   }
 
   # Get coordinates for the main brain frame
-  lcoord = FaBiSearch::lcoord
-  rcoord = FaBiSearch::rcoord
+  lcoord = FaBiSearch:::lcoord
+  rcoord = FaBiSearch:::rcoord
   coord = rbind(lcoord, rcoord)
 
   # Plot the main brain frame
@@ -53,7 +53,7 @@ plot_network = function(adj.matrix, communities=NULL, colors=NULL){
          mar = c(0, 0, 0, 0))
 
   # Get the coordinates for the Gordon atlas regions
-  gordon.atlas = FaBiSearch::gordon.atlas
+  gordon.atlas = FaBiSearch:::gordon.atlas
   coord333 = as.matrix(gordon.atlas[,c('x.mni','y.mni','z.mni')])
   rownames(coord333) = paste0(1:333)
   name.netwk = as.matrix(gordon.atlas[,c('Community')])
