@@ -1,7 +1,7 @@
 #===========================================================================
 # The function that plots the adjacency matrix in 3D w/ brain, utilizes the Gordon atlas
 
-#' plot_network
+#' plot.net
 #' @description This function uses a Gordon atlas defined adjacency matrix and returns a 3D plot of the estimated stationary network of this adjacency matrix
 #'
 #' @importFrom rgl par3d mfrow3d plot3d lines3d legend3d
@@ -14,14 +14,8 @@
 #'
 #' @return a 3D plot of the estimated stationary network from the adjacency matrix
 #' @export
-#'
-#' @examples
 
-plot_network = function(adj.matrix, communities=NULL, colors=NULL){
-
-  # adj.matrix  = input adjacency matrix to plot from Gordon atlas
-  # communities = a vector of communities from the Gordon atlas to include in the plot
-  # colors      = a vector of colors of the selected communities - must be of equal length to communities
+plot.net = function(adj.matrix, communities = NULL, colors = NULL){
 
   # If colors are null, define a color palette
   if(is.null(colors)){
@@ -41,8 +35,8 @@ plot_network = function(adj.matrix, communities=NULL, colors=NULL){
   }
 
   # Get coordinates for the main brain frame
-  lcoord = FaBiSearch:::lcoord
-  rcoord = FaBiSearch:::rcoord
+  lcoord = fabisearch:::lcoord
+  rcoord = fabisearch:::rcoord
   coord = rbind(lcoord, rcoord)
 
   # Plot the main brain frame
@@ -53,7 +47,7 @@ plot_network = function(adj.matrix, communities=NULL, colors=NULL){
          mar = c(0, 0, 0, 0))
 
   # Get the coordinates for the Gordon atlas regions
-  gordon.atlas = FaBiSearch:::gordon.atlas
+  gordon.atlas = fabisearch:::gordon.atlas
   coord333 = as.matrix(gordon.atlas[,c('x.mni','y.mni','z.mni')])
   rownames(coord333) = paste0(1:333)
   name.netwk = as.matrix(gordon.atlas[,c('Community')])
@@ -64,6 +58,7 @@ plot_network = function(adj.matrix, communities=NULL, colors=NULL){
   }
 
   # Prepare the adjacency matrix for plotting
+  colnames(adj.matrix) = rownames(adj.matrix) = NULL
   adj.matrix[!lower.tri(adj.matrix)] = NA
   ma3d = melt(adj.matrix, na.rm = TRUE)
 

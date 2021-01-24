@@ -1,27 +1,7 @@
 #===========================================================================
 # This function splits the time course into partitions exhaustively based on NMF
 
-#' split_all
-#' @description This function is embedded in the main FaBiSearch function. It serves to split the time course into partitions exhaustively based on NMF, using the modified
-#' binary search approach.
-#'
 #' @importFrom NMF nmf
-#'
-#' @param data Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
-#' @param split.index Empty vector for saving results
-#' @param lower Lower limit of split
-#' @param upper Upper limit of split
-#' @param x Index set of time series data
-#' @param min.dist Minimum distance between change points
-#' @param n.runs Number of runs to use for NMF function
-#' @param n.rank Rank value for NMF function
-#' @param alg.type Type of algorithm for NMF function -> check ?nmf for details, under "method"
-#'
-#' @return Dataframe of two columns, "T.split" which denotes the time of the candidate change point and "chg.loss" which denotes the change in loss from splitting the
-#' data at the respective candidate change point
-#' @export
-#'
-#' @examples
 
 split_all = function(data, split.index, lower, upper, x, min.dist, n.runs, n.rank, alg.type){
 

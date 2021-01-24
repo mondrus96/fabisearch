@@ -1,23 +1,7 @@
 #===========================================================================
 # Recalculates the NMF basis matrix difference between each pair of splits
 
-#' refit_splits
-#' @description This function is embedded in the main FaBiSearch function. It serves to recalculate the loss at each candidate change point considering the fact that
-#' multiple change points might have been detected.
-#'
 #' @importFrom NMF nmf
-#'
-#' @param orig.splits Matrix of candidate change points (\code{T.split}) and the change in loss (\code{chg.loss})
-#' @param curr.subj Multivariate time series data from the current subject
-#' @param x Index set of time series data
-#' @param n.rep Number of repetitions for bootstrapping procedure
-#' @param n.rank Rank value for NMF function
-#' @param alg.type Type of algorithm for NMF function -> check ?nmf for details, under "method"
-#'
-#' @return List where each element is a unique change point and contains a vector of loss values from the refitted NMF calculations
-#' @export
-#'
-#' @examples
 
 refit_splits = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type){
 

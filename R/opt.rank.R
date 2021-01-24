@@ -1,38 +1,33 @@
 #===========================================================================
-# This function finds the optimal rank for the given subject using the change in loss method
+# Helper function to find the optimal rank of a dataset
 
-#' optimal_rank
-#' @description This function is embedded in the main FaBiSearch function. It serves to find the optimal rank for the given subject using the change in loss method.
+#' opt.rank
+#' @description This function finds the optimal rank to use on a dataset using non-negative matrix factorization
 #'
 #' @importFrom NMF nmf
 #'
-#' @param curr.subj Multivariate time series data from the current subject
-#' @param n.runs Number of runs to use for NMF function
-#' @param alg.type Type of algorithm for NMF function -> check ?nmf for details, under "method"
+#' @param data Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
+#' @param nruns Number of runs to use for NMF function, by default is set to =50
+#' @param algtype Type of algorithm for NMF function, by default is set to ="brunet"
 #'
-#' @return Optimal rank for the subject, an integer
+#' @return Integer denoting the optimal rank found
 #' @export
-#'
-#' @examples
 
-optimal_rank = function(curr.subj, n.runs, alg.type){
-
-  # curr.subj   = multivariate time series data from the current subject
-  # n.runs      = n.runs to try the NMF algorithm for, the higher the more exhaustive the search for an optimal matrix is
-  # alg.type    = algorithm type -> check ?nmf for details, under "method
+opt.rank = function(data, nruns = 50, algtype = "brunet"){
 
   print("Finding optimal rank")
+  data = as.matrix(data)
 
   # Create a permuted dataset which will be compared with the original data
-  perm.subj = sample(as.vector(curr.subj))
-  perm.subj = matrix(perm.subj, ncol = ncol(curr.subj))
+  perm.subj = sample(as.vector(data))
+  perm.subj = matrix(perm.subj, ncol = ncol(data))
 
   # Calculate the losses for original and permuted data for first two rank values
   results.df = c()
   for (k in 1:2){
     # Fit NMF to the original and permuted data
-    orig.loss = nmf(curr.subj, rank = k, nrun = n.runs, method = alg.type)@residuals
-    perm.loss = nmf(perm.subj, rank = k, nrun = n.runs, method = alg.type)@residuals
+    orig.loss = nmf(data, rank = k, nrun = nruns, method = algtype)@residuals
+    perm.loss = nmf(perm.subj, rank = k, nrun = nruns, method = algtype)@residuals
 
     # Add these results to the results dataframe
     results.df = rbind(results.df, data.frame(k, orig.loss, perm.loss))
@@ -52,8 +47,8 @@ optimal_rank = function(curr.subj, n.runs, alg.type){
     k = k + 1
 
     # Fit NMF to the original and permuted data
-    orig.loss = nmf(curr.subj, rank = k, nrun = n.runs, method = alg.type)@residuals
-    perm.loss = nmf(perm.subj, rank = k, nrun = n.runs, method = alg.type)@residuals
+    orig.loss = nmf(data, rank = k, nrun = nruns, method = algtype)@residuals
+    perm.loss = nmf(perm.subj, rank = k, nrun = nruns, method = algtype)@residuals
 
     # Find the change in loss for original and permuted data
     orig.change = orig.loss - results.df[k-1,2]
@@ -64,7 +59,6 @@ optimal_rank = function(curr.subj, n.runs, alg.type){
   }
 
   # Print the results and return the optimal rank
-  print(results.df)
   print(paste("Optimal rank:", k))
   return(k)
 }
