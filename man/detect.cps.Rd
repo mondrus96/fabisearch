@@ -15,21 +15,21 @@ detect.cps(
 )
 }
 \arguments{
-\item{data}{Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns}
+\item{data}{A matrix with time points in rows and variables in columns. This input is the multivariate time series, \eqn{Y}, to be analyzed.}
 
-\item{mindist}{Minimum distance between change points, by default is set to =35}
+\item{mindist}{A positive integer, by default is set to 35. Defines the minimum distance between change points.}
 
-\item{nruns}{Number of runs to use for NMF function, by default is set to =50}
+\item{nruns}{A positive integer, by default is set to 5. Defines the number of runs to use for NMF function.}
 
-\item{nreps}{Number of repetitions for bootstrapping procedure, by default is set to =100}
+\item{nreps}{A positive integer, by default is set to 100. Defines the number of repetitions for bootstrapping procedure.}
 
-\item{alpha}{Significance level cutoff for deciding whether to retain change points or not, by default is set to ="p-value" and returns the associated
-p-value of the p-value test}
+\item{alpha}{A positive real number denoting the significance level cutoff to determine whether to keep change points or not. By default is set to
+"p-value" and returns the associated p-value of the t-test.}
 
-\item{rank}{Specifies whether to find rank using optimization procedure (specify "optimal") or use a predetermined rank (integer value, e.g., 4),
-by default is set to ="optimal"}
+\item{rank}{A positive integer denoting the value of rank to use in the algorithm. By default is set to "optimal" so the function finds the optimal rank
+to use.}
 
-\item{algtype}{Type of algorithm for NMF function, by default is set to ="brunet"}
+\item{algtype}{A character string denoting the type of algorithm for NMF function, by default is set to "brunet".}
 }
 \value{
 Outputs a list where:\cr
@@ -40,4 +40,35 @@ Outputs a list where:\cr
 \description{
 This function takes a multivariate time series, \eqn{Y}, and returns the change points detected. Utilizes non-negative
 factorization (NMF) to detect changes in clustering structure.
+}
+\examples{
+## Estimating the change points for a multivariate dataset, "data", using the default settings
+detect.cps(data)
+
+## Estimating the change points for a multivariate dataset, "data", with an alpha value of 0.05
+detect.cps(data, alpha = 0.05)
+
+## Estimating the change points for a multivariate dataset, "data", with a prespecified rank of 6
+detect.cps(data, rank = 6)
+
+## Estimating the change points for a multivariate dataset, "data", with non-default values
+detect.cps(data, mindist = 50, nruns = 100, nreps = 1000, alpha = 0.001, rank = 7, algtype = "ls-nmf")
+
+## Example output from the detect.cps() function
+$rank
+[1] 2
+
+$change.points
+T stat.test
+1 130 0.2292454
+
+$compute.time
+Time difference of 1.655591 mins
+}
+\references{
+"Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+(2021), preprint.
+}
+\author{
+Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
 }

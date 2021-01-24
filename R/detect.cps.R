@@ -8,21 +8,48 @@
 #' @importFrom doParallel registerDoParallel
 #' @importFrom parallel detectCores
 #'
-#' @param data Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
-#' @param mindist Minimum distance between change points, by default is set to =35
-#' @param nruns Number of runs to use for NMF function, by default is set to =50
-#' @param nreps Number of repetitions for bootstrapping procedure, by default is set to =100
-#' @param alpha Significance level cutoff for deciding whether to retain change points or not, by default is set to ="p-value" and returns the associated
-#' p-value of the p-value test
-#' @param rank Specifies whether to find rank using optimization procedure (specify "optimal") or use a predetermined rank (integer value, e.g., 4),
-#' by default is set to ="optimal"
-#' @param algtype Type of algorithm for NMF function, by default is set to ="brunet"
+#' @param data A matrix with time points in rows and variables in columns. This input is the multivariate time series, \eqn{Y}, to be analyzed.
+#' @param mindist A positive integer, by default is set to 35. Defines the minimum distance between change points.
+#' @param nruns A positive integer, by default is set to 5. Defines the number of runs to use for NMF function.
+#' @param nreps A positive integer, by default is set to 100. Defines the number of repetitions for bootstrapping procedure.
+#' @param alpha A positive real number denoting the significance level cutoff to determine whether to keep change points or not. By default is set to
+#' "p-value" and returns the associated p-value of the t-test.
+#' @param rank A positive integer denoting the value of rank to use in the algorithm. By default is set to "optimal" so the function finds the optimal rank
+#' to use.
+#' @param algtype A character string denoting the type of algorithm for NMF function, by default is set to "brunet".
 #'
 #' @return Outputs a list where:\cr
 #' \code{$rank} is the rank used for change point detection \cr
 #' \code{$change.points} is a table of the change points detected where column "T" is the time of the change point and "stat.test" is the result of the t-test\cr
 #' \code{$compute.time} is the compute time for the algorithm\cr
 #' @export
+#'
+#' @examples
+#' ## Estimating the change points for a multivariate dataset, "data", using the default settings
+#' detect.cps(data)
+#'
+#' ## Estimating the change points for a multivariate dataset, "data", with an alpha value of 0.05
+#' detect.cps(data, alpha = 0.05)
+#'
+#' ## Estimating the change points for a multivariate dataset, "data", with a prespecified rank of 6
+#' detect.cps(data, rank = 6)
+#'
+#' ## Estimating the change points for a multivariate dataset, "data", with non-default values
+#' detect.cps(data, mindist = 50, nruns = 100, nreps = 1000, alpha = 0.001, rank = 7, algtype = "ls-nmf")
+#'
+#' ## Example output from the detect.cps() function
+#' $rank
+#' [1] 2
+#'
+#' $change.points
+#' T stat.test
+#' 1 130 0.2292454
+#'
+#' $compute.time
+#' Time difference of 1.655591 mins
+#' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
+#' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+#' (2021), preprint.
 
 detect.cps = function(data, mindist = 35, nruns = 50, nreps = 100, alpha = "p-value", rank = "optimal", algtype = "brunet"){
 

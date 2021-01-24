@@ -8,12 +8,35 @@
 #' @importFrom reshape2 melt
 #' @importFrom utils read.csv
 #'
-#' @param adj.matrix A 333 by 333 adjacency matrix
-#' @param communities A vector of strings related to communities to plot - by default, all communities are plotted - (any combination of "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc", "VentralAttn", "Salience", "DorsalAttn)
-#' @param colors A vector of hex codes for node colors to distinguish each community - by default, each community is given a predefined color
+#' @param adj.matrix A matrix with dimensions (333,333). This is the adjacency matrix to be plotted.
+#' @param communities A vector of character strings specifying the communities to plot. By default, all communities are plotted. Communities available are:
+#' "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc",
+#' "VentralAttn", "Salience", and "DorsalAttn.
+#' @param colors A vector of character strings specifying the hex codes for node colors to distinguish each community. By default, each community is given
+#' a predefined, unique color.
 #'
 #' @return a 3D plot of the estimated stationary network from the adjacency matrix
 #' @export
+#'
+#' @examples
+#' ## Plotting a 333 by 333 adjacency matrix "adj.matrix" with default settings
+#' plot.net(adj.matrix)
+#'
+#' ## Plotting a 333 by 333 adjacency matrix "adj.matrix" with default colours but only the "Visual", "FrontoParietal", and "Auditory" communities
+#' comms = c("Visual", "FrontoParietal", "Auditory")
+#' plot.net(adj.matrix, communities = comms)
+#'
+#' ## Plotting a 333 by 333 adjacency matrix "adj.matrix" with red, blue, and green nodes to denote the "Default", "SMhand", and "Visual" communities
+#' comms = c("Default", "SMhand", "Visual")
+#' colrs = c("#FF0000", "#00FF00", "#0000FF")
+#' plot.net(adj.matrix, communities = comms, colors = colrs)
+#'
+#' ## The default color palette is defined as follows
+#' c("#D32F2F", "#303F9F", "#388E3C", "#FFEB3B", "#03A9F4", "#FF9800", "#673AB7", "#CDDC39", "#9C27B0", "#795548", "#212121", "#009688", "#FFC0CB")
+#'
+#' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
+#' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+#' (2021), preprint.
 
 plot.net = function(adj.matrix, communities = NULL, colors = NULL){
 

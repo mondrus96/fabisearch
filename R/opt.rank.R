@@ -6,12 +6,29 @@
 #'
 #' @importFrom NMF nmf
 #'
-#' @param data Multivariate time series, \eqn{Y}, to be analyzed, should be in a matrix format with time points in rows and variables in columns
-#' @param nruns Number of runs to use for NMF function, by default is set to =50
-#' @param algtype Type of algorithm for NMF function, by default is set to ="brunet"
+#' @param data A matrix with time points in rows and variables in columns. This input is the multivariate time series, \eqn{Y}, to be analyzed.
+#' @param nruns A positive integer, by default is set to 5. Defines the number of runs to use for NMF function.
+#' @param algtype A character string denoting the type of algorithm for NMF function, by default is set to "brunet".
 #'
 #' @return Integer denoting the optimal rank found
 #' @export
+#'
+#' @examples
+#' ## Finding the optimal rank for an input dataset "data" with the default settings
+#' opt.rank(data)
+#' [1] 5
+#'
+#' ## Finding the optimal rank for an input dataset "data" with nruns of 100 and the default "brunet" algorithm
+#' opt.rank(data, nruns = 100)
+#' [1] 4
+#'
+#' ## Finding the optimal rank for an input dataset "data" using the least square NMF method and the default nruns
+#' opt.rank(data, algtype = "ls-nmf")
+#' [1] 8
+#'
+#' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
+#' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+#' (2021), preprint.
 
 opt.rank = function(data, nruns = 50, algtype = "brunet"){
 
