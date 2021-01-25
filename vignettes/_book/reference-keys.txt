@@ -1,5 +1,0 @@
-fig:unnamed-chunk-2
-introduction
-methods
-non-negative-matrix-factorization
-main-functions
