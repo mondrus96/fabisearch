@@ -1,36 +1,36 @@
 #===========================================================================
 # The function that plots the adjacency matrix in 3D w/ brain, utilizes the Gordon atlas
 
-#' net.3dplot
-#' @description This function uses a Gordon atlas defined adjacency matrix and returns a 3D plot of the estimated stationary network of this adjacency matrix.
+#' 3D network plot of an adjacency matrix between pairs of change points
+#' @description This function takes a Gordon atlas defined adjacency matrix and returns a 3D plot of the estimated stationary network of the adjacency matrix.
 #'
 #' @importFrom rgl par3d mfrow3d plot3d lines3d legend3d
 #' @importFrom reshape2 melt
 #'
-#' @param adj.matrix A matrix with dimensions (333,333). This is the adjacency matrix to be plotted.
+#' @param adjmatrix A numerical matrix of dimension 333*333 (Gordon Atlas). This is the adjacency matrix to be plotted.
 #' @param communities A vector of character strings specifying the communities to plot. By default, all communities are plotted. Communities available are:
 #' "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc",
 #' "VentralAttn", "Salience", and "DorsalAttn".
 #' @param colors A vector of character strings specifying the hex codes for node colors to distinguish each community. By default, each community is given
 #' a predefined, unique color.
 #'
-#' @return a 3D plot of the estimated stationary network from the adjacency matrix.
+#' @return A 3D network plot of an adjacency matrix between pairs of change points.
 #' @export
 #'
 #' @examples
-#' ## Plotting a 333 by 333 adjacency matrix "adj.matrix" with default settings
-#' net.3dplot(adj.matrix)
+#' ## Plotting a 333 by 333 adjacency matrix "adjmatrix" with default settings
+#' net.3dplot(adjmatrix)
 #'
-#' ## Plotting a 333 by 333 adjacency matrix "adj.matrix" with default colours but only
+#' ## Plotting a 333 by 333 adjacency matrix "adjmatrix" with default colours but only
 #' ## the "Visual", "FrontoParietal", and "Auditory" communities
 #' comms = c("Visual", "FrontoParietal", "Auditory")
-#' net.3dplot(adj.matrix, communities = comms)
+#' net.3dplot(adjmatrix, communities = comms)
 #'
-#' ## Plotting a 333 by 333 adjacency matrix "adj.matrix" with red, blue, and green
+#' ## Plotting a 333 by 333 adjacency matrix "adjmatrix" with red, blue, and green
 #' ## nodes to denote the "Default", "SMhand", and "Visual" communities
 #' comms = c("Default", "SMhand", "Visual")
 #' colrs = c("#FF0000", "#00FF00", "#0000FF")
-#' net.3dplot(adj.matrix, communities = comms, colors = colrs)
+#' net.3dplot(adjmatrix, communities = comms, colors = colrs)
 #'
 #' ## The default color palette is defined as follows
 #' c("#D32F2F", "#303F9F", "#388E3C", "#FFEB3B", "#03A9F4", "#FF9800", "#673AB7",
@@ -40,7 +40,9 @@
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
 #' (2021), preprint.
 
-net.3dplot = function(adj.matrix, communities = NULL, colors = NULL){
+net.3dplot = function(adjmatrix, communities = NULL, colors = NULL){
+
+  set.seed(685829)
 
   # If colors are null, define a color palette
   if(is.null(colors)){
@@ -83,9 +85,9 @@ net.3dplot = function(adj.matrix, communities = NULL, colors = NULL){
   }
 
   # Prepare the adjacency matrix for plotting
-  colnames(adj.matrix) = rownames(adj.matrix) = NULL
-  adj.matrix[!lower.tri(adj.matrix)] = NA
-  ma3d = melt(adj.matrix, na.rm = TRUE)
+  colnames(adjmatrix) = rownames(adjmatrix) = NULL
+  adjmatrix[!lower.tri(adjmatrix)] = NA
+  ma3d = melt(adjmatrix, na.rm = TRUE)
 
   # Remove any edges which connect nodes to themselves, keep only entries where there is a connection
   ma3d = ma3d[!ma3d[,1] == ma3d[,2],]
