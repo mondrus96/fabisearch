@@ -3,9 +3,9 @@
 \docType{data}
 \name{adjmatrix}
 \alias{adjmatrix}
-\title{Adjacency matrix of fMRI data set}
+\title{Adjacency matrix for the NYU test-restest resting-state fMRI data set}
 \format{
-A matrix with 333 rows and 333 columns, where each entry denotes whether two nodes in the Gordon atlas are clustered together.
+A matrix with 333 rows and 333 columns, where each entry denotes whether two nodes from the Gordon atlas are connected by an edge.
 }
 \source{
 \url{https://www.nitrc.org/projects/nyu_trt}

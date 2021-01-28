@@ -1,28 +1,29 @@
 #===========================================================================
-# Documentation for datasets
+# Documentation for data sets
 
-#' Simulation 2 data set
+#' A simulated data set (see simulation 2 from Ondrus et al. 2021)
 #'
-#' A data set of Simulation 2, which is generated from a multivariate Gaussian distribution with 2 clusters where the correlation between nodes in the same
-#' cluster is 0.75 and between different clusters is 0.2. This data set contains a change point at t=100 where vertex labels are randomly reshuffled.
+#' A simulated data set (see simulation 2 from Ondrus et al. 2021). The data is generated from a multivariate Gaussian distribution with 2
+#' clusters where the correlation between nodes in the same cluster is 0.75 and between different clusters is 0.2 for the first 100 time
+#' points. The vertex labels are randomly reshuflled for the second 100 time points. Hence, there is one change point at t=100.
 #'
 #' @format A matrix with 200 rows and 80 columns/variables.
 "sim2"
 
-#' fMRI data set
+#' An example from the NYU test-retest resting state fMRI data set
 #'
-#' A data set of the first subject and their corresponding first stationary block from the second fMRI scan.
+#' A data matrix from the first stationary block of the second scan from the first subject from the test-restest resting-state fMRI data set.
 #'
-#' @format A matrix with 35 rows and 333 columns/variables, where each column corresponds to an ROI from the Gordon atlas.
+#' @format A data matrix with 35 rows and 333 columns/variables, where each column corresponds to an ROI from the Gordon atlas.
 #'
 #' @source \url{https://www.nitrc.org/projects/nyu_trt}
 "fmridata"
 
-#' Adjacency matrix of fMRI data set
+#' Adjacency matrix for the NYU test-restest resting-state fMRI data set
 #'
 #' The adjacency matrix calculated from the "fmridata" data set, using the Gordon atlas.
 #'
-#' @format A matrix with 333 rows and 333 columns, where each entry denotes whether two nodes in the Gordon atlas are clustered together.
+#' @format A matrix with 333 rows and 333 columns, where each entry denotes whether two nodes from the Gordon atlas are connected by an edge.
 #'
 #' @source \url{https://www.nitrc.org/projects/nyu_trt}
 "adjmatrix"

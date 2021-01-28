@@ -1,5 +1,5 @@
 #===========================================================================
-# Helper function to find the optimal rank of a dataset
+# Helper function to find the optimal rank of a data set
 
 #' Finds the optimal rank for non-negative matrix factorization (NMF)
 #' @description This function finds the optimal rank for using non-negative matrix factorization (NMF).
@@ -8,23 +8,23 @@
 #'
 #' @param Y A numerical matrix representing the multivariate time series, with the columns representing its components.
 #' @param nruns A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.
-#' @param algtype A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet" - please see the "Algorithms" section of
+#' @param algtype A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 #' \code{\link[NMF]{nmf}} for more information on the available algorithms.
 #'
 #' @return A positive integer representing the optimal rank.
 #' @export
 #'
 #' @examples
-#' ## Finding the optimal rank for an input dataset "sim2" with the default settings
+#' ## Finding the optimal rank for an input data set "sim2" with the default settings
 #' opt.rank(sim2)
 #' [1] 3
 #'
-#' ## Finding the optimal rank for an input dataset "sim2" with nruns of 100 and the
+#' ## Finding the optimal rank for an input data set "sim2" with nruns of 100 and the
 #' ## default "brunet" algorithm
 #' opt.rank(sim2, nruns = 100)
 #' [1] 3
 #'
-#' ## Finding the optimal rank for an input dataset "sim2" using the "snmf/l"
+#' ## Finding the optimal rank for an input data set "sim2" using the "snmf/l"
 #' ## NMF method and the default nruns
 #' opt.rank(sim2, algtype = "snmf/l")
 #' [1] 4
@@ -39,7 +39,7 @@ opt.rank = function(Y, nruns = 50, algtype = "brunet"){
   print("Finding optimal rank")
   Y = as.matrix(Y)
 
-  # Create a permuted dataset which will be compared with the original Y
+  # Create a permuted data set which will be compared with the original Y
   perm.subj = sample(as.vector(Y))
   perm.subj = matrix(perm.subj, ncol = ncol(Y))
 

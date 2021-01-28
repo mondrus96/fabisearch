@@ -17,7 +17,7 @@ detect.cps(
 \arguments{
 \item{Y}{A numerical matrix representing the multivariate time series, with the columns representing its components.}
 
-\item{mindist}{A positive integer with default value equal to 35. It is used to define the minimum distance acceptable between detected change-points.}
+\item{mindist}{A positive integer with default value equal to 35. It is used to define the minimum distance acceptable between detected change points.}
 
 \item{nruns}{A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.}
 
@@ -31,13 +31,13 @@ points is returned.}
 If rank = "optimal", which is also the default value, then the optimal rank is used. If rank = a positive integer value, say 4, then a predetermined
 rank is used.}
 
-\item{algtype}{A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet" - please see the "Algorithms" section of
+\item{algtype}{A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 \code{\link[NMF]{nmf}} for more information on the available algorithms.}
 }
 \value{
 A list with the following components:\cr
 \code{rank}: The rank used for change point detection.\cr
-\code{change_points}: A table of the detected change points detected where column "T" is the time of the change point and "stat.test" is the result of the t-test.\cr
+\code{change_points}: A table of the detected change points detected where column "T" is the time of the change point and "stat_test" is the result of the t-test.\cr
 \code{compute_time}: The computational time.\cr
 }
 \description{
@@ -45,18 +45,18 @@ This function detects multiple change points in the network (or clustering) stru
 non-negative matrix factorization and a binary search.
 }
 \examples{
-## Estimating the change points for a multivariate dataset, sim2, using the default settings
+## Estimating the change points for a multivariate data set, sim2, using the default settings
 detect.cps(sim2)
 
-## Estimating the change points for a multivariate dataset, sim2, with an alpha value of 0.05
+## Estimating the change points for a multivariate data set, sim2, with an alpha value of 0.05
 detect.cps(sim2, alpha = 0.05)
 
-## Estimating the change points for a multivariate dataset, sim2, with a prespecified rank of 6
+## Estimating the change points for a multivariate data set, sim2, with a prespecified rank of 6
 detect.cps(sim2, rank = 6)
 
-## Estimating the change points for a multivariate dataset, sim2, with non-default values
+## Estimating the change points for a multivariate data set, sim2, with non-default values
 detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
-   alpha = 0.001, rank = 7, algtype = "ls-nmf")
+   alpha = 0.001, rank = 7, algtype = "snmf/l")
 
 ## Example output from the detect.cps() function
 > detect.cps(sim2, mindist = 50, nruns = 20)
@@ -64,7 +64,7 @@ $rank
 [1] 5
 
 $change_points
-    T stat.test
+    T stat_test
 1  99      TRUE
 2 148     FALSE
 

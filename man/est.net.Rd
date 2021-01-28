@@ -11,46 +11,42 @@ est.net(Y, nruns = 50, lambda = 7, rank = "optimal", algtype = "brunet")
 
 \item{nruns}{A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.}
 
-\item{lambda}{A positive real number, which defines the clustering method and the cutoff value when estimating an adjacency matrix from the computed
-consensus matrix. If lambda = a positive integer value, say 6, complete-linkage, hierarchical clustering is applied to the consensus matrix and cutoff at
-6 clusters. If lambda = a positive real number, say 0.5, entries in the consensus matrix with a value greater than or equal to 0.5 are labelled adjacent,
-while entries less than 0.5 are not.}
+\item{lambda}{A positive real number, which defines the clustering method and/or the cutoff value when estimating an adjacency matrix from the computed
+consensus matrix. If lambda = a positive integer value, say 6, complete-linkage, hierarchical clustering is applied to the consensus matrix and the cutoff is at
+6 clusters. If lambda = a positive real number, say 0.5, entries in the consensus matrix with a value greater than or equal to 0.5 are labelled 1,
+while entries less than 0.5 are labelled 0.}
 
 \item{rank}{A character string or a positive integer, which defines the rank used in the optimization procedure to detect the change points.
 If rank = "optimal", which is also the default value, then the optimal rank is used. If rank = a positive integer value, say 4, then a predetermined
 rank is used.}
 
-\item{algtype}{A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet" - please see the "Algorithms" section of
+\item{algtype}{A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 \code{\link[NMF]{nmf}} for more information on the available algorithms.}
 }
 \value{
 A matrix (or more specifically, an adjacency matrix) denoting network (or clustering) structure between components of \eqn{Y}.
 }
 \description{
-This function estimates sparse networks using non-negative matrix factorization (NMF) for data between change points. See details for a brief explanation
+This function estimates sparse networks using non-negative matrix factorization (NMF) for data between change points.
 }
 \examples{
-## Estimating the network for a multivariate dataset, "sim2" using default settings
-## - outputs as an adjacency matrix
+## Estimating the network for a multivariate data set, "sim2" using default settings
 est.net(sim2)
 
-## Estimating the network for a multivariate dataset, "sim2", specifying the number
-## of runs to 100 and using hierarchical clustering to generate the adjacency matrix
-## with a cutoff value of 7 clusters
+## Estimating the network for a multivariate data set, "sim2", using hierarchical
+## clustering to generate the adjacency matrix with a cutoff value of 7 clusters
 est.net(sim2, nruns = 100, lambda = 7)
 
-## Estimating the network for a multivariate dataset, "sim2", specifying the number
-## of runs to 100 and using a cutoff value for the adjacency matrix to enforce
-## sparsity, where the cutoff is 0.5
+## Estimating the network for a multivariate data set, "sim2", and using a cutoff
+## value for the adjacency matrix to enforce sparsity, where the cutoff is 0.5
 est.net(sim2, nruns = 100, lambda = 0.5)
 
-## Estimating the network for a multivariate dataset, "sim2", specifying the rank
-## beforehand at 4
+## Estimating the network for a multivariate data set, "sim2"
 est.net(sim2, rank = 4)
 
-## Estimating the network for a multivariate dataset, "sim2", using the least
-## square NMF method
-est.net(sim2, algtype = "ls-nmf")
+## Estimating the network for a multivariate data set, "sim2", using the "snmf/l"
+## algorithm for NMF
+est.net(sim2, algtype = "snmf/l")
 
 }
 \references{

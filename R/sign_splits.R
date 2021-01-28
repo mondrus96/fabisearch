@@ -25,7 +25,7 @@ sign_splits = function(orig.splits, refit.splits, perm.distr, alpha){
     }
   }
   # Rename column
-  colnames(final.splits) = c("T", "stat.test")
+  colnames(final.splits) = c("T", "stat_test")
   rownames(final.splits) = NULL
 
   return(final.splits)

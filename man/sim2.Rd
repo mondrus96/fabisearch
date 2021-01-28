@@ -3,7 +3,7 @@
 \docType{data}
 \name{sim2}
 \alias{sim2}
-\title{Simulation 2 data set}
+\title{A simulated data set (see simulation 2 from Ondrus et al. 2021)}
 \format{
 A matrix with 200 rows and 80 columns/variables.
 }
@@ -11,7 +11,8 @@ A matrix with 200 rows and 80 columns/variables.
 sim2
 }
 \description{
-A data set of Simulation 2, which is generated from a multivariate Gaussian distribution with 2 clusters where the correlation between nodes in the same
-cluster is 0.75 and between different clusters is 0.2. This data set contains a change point at t=100 where vertex labels are randomly reshuffled.
+A simulated data set (see simulation 2 from Ondrus et al. 2021). The data is generated from a multivariate Gaussian distribution with 2
+clusters where the correlation between nodes in the same cluster is 0.75 and between different clusters is 0.2 for the first 100 time
+points. The vertex labels are randomly reshuflled for the second 100 time points. Hence, there is one change point at t=100.
 }
 \keyword{datasets}

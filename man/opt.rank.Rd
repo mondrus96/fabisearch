@@ -11,7 +11,7 @@ opt.rank(Y, nruns = 50, algtype = "brunet")
 
 \item{nruns}{A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.}
 
-\item{algtype}{A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet" - please see the "Algorithms" section of
+\item{algtype}{A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 \code{\link[NMF]{nmf}} for more information on the available algorithms.}
 }
 \value{
@@ -21,16 +21,16 @@ A positive integer representing the optimal rank.
 This function finds the optimal rank for using non-negative matrix factorization (NMF).
 }
 \examples{
-## Finding the optimal rank for an input dataset "sim2" with the default settings
+## Finding the optimal rank for an input data set "sim2" with the default settings
 opt.rank(sim2)
 [1] 3
 
-## Finding the optimal rank for an input dataset "sim2" with nruns of 100 and the
+## Finding the optimal rank for an input data set "sim2" with nruns of 100 and the
 ## default "brunet" algorithm
 opt.rank(sim2, nruns = 100)
 [1] 3
 
-## Finding the optimal rank for an input dataset "sim2" using the "snmf/l"
+## Finding the optimal rank for an input data set "sim2" using the "snmf/l"
 ## NMF method and the default nruns
 opt.rank(sim2, algtype = "snmf/l")
 [1] 4

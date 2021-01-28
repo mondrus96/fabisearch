@@ -3,9 +3,9 @@
 \docType{data}
 \name{fmridata}
 \alias{fmridata}
-\title{fMRI data set}
+\title{An example from the NYU test-retest resting state fMRI data set}
 \format{
-A matrix with 35 rows and 333 columns/variables, where each column corresponds to an ROI from the Gordon atlas.
+A data matrix with 35 rows and 333 columns/variables, where each column corresponds to an ROI from the Gordon atlas.
 }
 \source{
 \url{https://www.nitrc.org/projects/nyu_trt}
@@ -14,6 +14,6 @@ A matrix with 35 rows and 333 columns/variables, where each column corresponds t
 fmridata
 }
 \description{
-A data set of the first subject and their corresponding first stationary block from the second fMRI scan.
+A data matrix from the first stationary block of the second scan from the first subject from the test-restest resting-state fMRI data set.
 }
 \keyword{datasets}
