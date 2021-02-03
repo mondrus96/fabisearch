@@ -21,7 +21,7 @@ detect.cps(
 
 \item{nruns}{A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.}
 
-\item{nreps}{A positive integer with default value equal to 100. It is used to define the number of resamples in the bootstrap procedure.}
+\item{nreps}{A positive integer with default value equal to 100. It is used to define the number of permutations for the statistical inference procedure.}
 
 \item{alpha}{A character string or a positive real number with default value equal to 0.05. If alpha = a positive integer value, say 0.05, then it is
 used to define the significance level for inference on the change points. If alpha = "p-value", then the p-value calculated for inference on the change
@@ -35,26 +35,27 @@ rank is used.}
 \code{\link[NMF]{nmf}} for more information on the available algorithms.}
 }
 \value{
-A list with the following components:\cr
-\code{rank}: The rank used for change point detection.\cr
-\code{change_points}: A table of the detected change points detected where column "T" is the time of the change point and "stat_test" is the result of the t-test.\cr
-\code{compute_time}: The computational time.\cr
+A list with the following components :\cr
+\code{rank}: The rank used in the optimization procedure for change point detection.\cr
+\code{change_points}: A table of the detected change points where column "T" is the time of the change point and "stat_test" is the result (either a boolean value
+if alpha = a positive real number, or the p-value if alpha = "p-value") of the t-test.\cr
+\code{compute_time}: The computational time, saved as a "difftime" object.\cr
 }
 \description{
 This function detects multiple change points in the network (or clustering) structure of multivariate high-dimensional time series using
 non-negative matrix factorization and a binary search.
 }
 \examples{
-## Estimating the change points for a multivariate data set, sim2, using the default settings
+## Change point detection for a multivariate data set, sim2, using the default settings
 detect.cps(sim2)
 
-## Estimating the change points for a multivariate data set, sim2, with an alpha value of 0.05
+## Change point detection for a multivariate data set, sim2, with an alpha value of 0.05
 detect.cps(sim2, alpha = 0.05)
 
-## Estimating the change points for a multivariate data set, sim2, with a prespecified rank of 6
+## Change point detection for a multivariate data set, sim2, with a prespecified rank of 6
 detect.cps(sim2, rank = 6)
 
-## Estimating the change points for a multivariate data set, sim2, with non-default values
+## Change point detection for a multivariate data set, sim2, with non-default values
 detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
    alpha = 0.001, rank = 7, algtype = "snmf/l")
 
@@ -73,7 +74,7 @@ Time difference of 15.8113 mins
 
 }
 \references{
-"Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+"Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 (2021), preprint.
 }
 \author{

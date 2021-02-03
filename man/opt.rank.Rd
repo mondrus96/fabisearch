@@ -18,7 +18,7 @@ opt.rank(Y, nruns = 50, algtype = "brunet")
 A positive integer representing the optimal rank.
 }
 \description{
-This function finds the optimal rank for using non-negative matrix factorization (NMF).
+This function finds the optimal rank for non-negative matrix factorization (NMF).
 }
 \examples{
 ## Finding the optimal rank for an input data set "sim2" with the default settings
@@ -37,7 +37,7 @@ opt.rank(sim2, algtype = "snmf/l")
 
 }
 \references{
-"Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+"Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 (2021), preprint.
 }
 \author{

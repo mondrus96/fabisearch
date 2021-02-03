@@ -11,7 +11,7 @@
 #' @param Y A numerical matrix representing the multivariate time series, with the columns representing its components.
 #' @param mindist A positive integer with default value equal to 35. It is used to define the minimum distance acceptable between detected change points.
 #' @param nruns A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.
-#' @param nreps A positive integer with default value equal to 100. It is used to define the number of resamples in the bootstrap procedure.
+#' @param nreps A positive integer with default value equal to 100. It is used to define the number of permutations for the statistical inference procedure.
 #' @param alpha A character string or a positive real number with default value equal to 0.05. If alpha = a positive integer value, say 0.05, then it is
 #' used to define the significance level for inference on the change points. If alpha = "p-value", then the p-value calculated for inference on the change
 #' points is returned.
@@ -21,23 +21,24 @@
 #' @param algtype A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 #' \code{\link[NMF]{nmf}} for more information on the available algorithms.
 #'
-#' @return A list with the following components:\cr
-#' \code{rank}: The rank used for change point detection.\cr
-#' \code{change_points}: A table of the detected change points detected where column "T" is the time of the change point and "stat_test" is the result of the t-test.\cr
-#' \code{compute_time}: The computational time.\cr
+#' @return A list with the following components :\cr
+#' \code{rank}: The rank used in the optimization procedure for change point detection.\cr
+#' \code{change_points}: A table of the detected change points where column "T" is the time of the change point and "stat_test" is the result (either a boolean value
+#' if alpha = a positive real number, or the p-value if alpha = "p-value") of the t-test.\cr
+#' \code{compute_time}: The computational time, saved as a "difftime" object.\cr
 #' @export
 #'
 #' @examples
-#' ## Estimating the change points for a multivariate data set, sim2, using the default settings
+#' ## Change point detection for a multivariate data set, sim2, using the default settings
 #' detect.cps(sim2)
 #'
-#' ## Estimating the change points for a multivariate data set, sim2, with an alpha value of 0.05
+#' ## Change point detection for a multivariate data set, sim2, with an alpha value of 0.05
 #' detect.cps(sim2, alpha = 0.05)
 #'
-#' ## Estimating the change points for a multivariate data set, sim2, with a prespecified rank of 6
+#' ## Change point detection for a multivariate data set, sim2, with a prespecified rank of 6
 #' detect.cps(sim2, rank = 6)
 #'
-#' ## Estimating the change points for a multivariate data set, sim2, with non-default values
+#' ## Change point detection for a multivariate data set, sim2, with non-default values
 #' detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
 #'    alpha = 0.001, rank = 7, algtype = "snmf/l")
 #'
@@ -55,7 +56,7 @@
 #' Time difference of 15.8113 mins
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
-#' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+#' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), preprint.
 
 detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, rank = "optimal", algtype = "brunet"){

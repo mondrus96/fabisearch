@@ -24,7 +24,7 @@ rank is used.}
 \code{\link[NMF]{nmf}} for more information on the available algorithms.}
 }
 \value{
-A matrix (or more specifically, an adjacency matrix) denoting network (or clustering) structure between components of \eqn{Y}.
+A matrix (or more specifically, an adjacency matrix) denoting the network (or clustering) structure between components of \eqn{Y}.
 }
 \description{
 This function estimates sparse networks using non-negative matrix factorization (NMF) for data between change points.
@@ -50,7 +50,7 @@ est.net(sim2, algtype = "snmf/l")
 
 }
 \references{
-"Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+"Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 (2021), preprint.
 }
 \author{

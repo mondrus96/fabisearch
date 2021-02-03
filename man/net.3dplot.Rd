@@ -7,7 +7,7 @@
 net.3dplot(adjmatrix, communities = NULL, colors = NULL)
 }
 \arguments{
-\item{adjmatrix}{A numerical matrix of dimension 333*333 (Gordon Atlas). This is the adjacency matrix to be plotted.}
+\item{adjmatrix}{A numerical matrix of dimension 333*333 (Gordon atlas). This is the adjacency matrix to be plotted.}
 
 \item{communities}{A vector of character strings specifying the communities to plot. By default, all communities are plotted. Communities available are:
 "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc",
@@ -20,18 +20,18 @@ a predefined, unique color.}
 A 3D network plot of an adjacency matrix between pairs of change points.
 }
 \description{
-This function takes a Gordon atlas defined adjacency matrix and returns a 3D plot of the estimated stationary network of the adjacency matrix.
+This function takes a Gordon atlas defined adjacency matrix and returns a 3D plot of it.
 }
 \examples{
-## Plotting a 333 by 333 adjacency matrix "adjmatrix" with default settings
+## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default settings
 net.3dplot(adjmatrix)
 
-## Plotting a 333 by 333 adjacency matrix "adjmatrix" with default colours but only
+## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default colours but only
 ## the "Visual", "FrontoParietal", and "Auditory" communities
 comms = c("Visual", "FrontoParietal", "Auditory")
 net.3dplot(adjmatrix, communities = comms)
 
-## Plotting a 333 by 333 adjacency matrix "adjmatrix" with red, blue, and green
+## Plotting a 333 * 333 adjacency matrix "adjmatrix" with red, blue, and green
 ## nodes to denote the "Default", "SMhand", and "Visual" communities
 comms = c("Default", "SMhand", "Visual")
 colrs = c("#FF0000", "#00FF00", "#0000FF")
@@ -43,7 +43,7 @@ c("#D32F2F", "#303F9F", "#388E3C", "#FFEB3B", "#03A9F4", "#FF9800", "#673AB7",
 
 }
 \references{
-"Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+"Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 (2021), preprint.
 }
 \author{

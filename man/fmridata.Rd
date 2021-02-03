@@ -3,7 +3,7 @@
 \docType{data}
 \name{fmridata}
 \alias{fmridata}
-\title{An example from the NYU test-retest resting state fMRI data set}
+\title{Data from the NYU test-retest resting state fMRI data set}
 \format{
 A data matrix with 35 rows and 333 columns/variables, where each column corresponds to an ROI from the Gordon atlas.
 }
@@ -14,6 +14,6 @@ A data matrix with 35 rows and 333 columns/variables, where each column correspo
 fmridata
 }
 \description{
-A data matrix from the first stationary block of the second scan from the first subject from the test-restest resting-state fMRI data set.
+A data matrix from the first stationary block of the second scan from the first subject from the NYU test-restest resting-state fMRI data set.
 }
 \keyword{datasets}

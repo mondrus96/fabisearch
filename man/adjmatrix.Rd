@@ -5,7 +5,7 @@
 \alias{adjmatrix}
 \title{Adjacency matrix for the NYU test-restest resting-state fMRI data set}
 \format{
-A matrix with 333 rows and 333 columns, where each entry denotes whether two nodes from the Gordon atlas are connected by an edge.
+A 333 * 333 matrix, where each entry takes a value 1 (0) if two nodes are (not) connected by an edge, using the Gordon atlas.
 }
 \source{
 \url{https://www.nitrc.org/projects/nyu_trt}

@@ -2,7 +2,7 @@
 # Helper function to find the optimal rank of a data set
 
 #' Finds the optimal rank for non-negative matrix factorization (NMF)
-#' @description This function finds the optimal rank for using non-negative matrix factorization (NMF).
+#' @description This function finds the optimal rank for non-negative matrix factorization (NMF).
 #'
 #' @importFrom NMF nmf
 #'
@@ -30,7 +30,7 @@
 #' [1] 4
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
-#' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+#' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), preprint.
 
 opt.rank = function(Y, nruns = 50, algtype = "brunet"){

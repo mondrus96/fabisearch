@@ -18,7 +18,7 @@
 #' @param algtype A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 #' \code{\link[NMF]{nmf}} for more information on the available algorithms.
 #'
-#' @return A matrix (or more specifically, an adjacency matrix) denoting network (or clustering) structure between components of \eqn{Y}.
+#' @return A matrix (or more specifically, an adjacency matrix) denoting the network (or clustering) structure between components of \eqn{Y}.
 #' @export
 #'
 #' @examples
@@ -41,7 +41,7 @@
 #' est.net(sim2, algtype = "snmf/l")
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
-#' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al
+#' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), preprint.
 
 est.net = function(Y, nruns = 50, lambda = 7, rank = "optimal", algtype = "brunet") {
