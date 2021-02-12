@@ -10,7 +10,7 @@ LazyData: true
 RoxygenNote: 7.1.1
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Imports: doParallel, foreach, parallel, rgl, reshape2
+Imports: rgl, reshape2
 Depends: R (>= 3.10), NMF
 Packaged: 2021-01-26 01:35:14 UTC; Martin
 Author: Martin Ondrus [aut, cre], Ivor Cribben [aut]

@@ -56,20 +56,21 @@ detect.cps(sim2, rank = 6)
 
 ## Change point detection for a multivariate data set, sim2, with non-default values
 detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
-   alpha = 0.001, rank = 7, algtype = "snmf/l")
+alpha = 0.001, rank = 7, algtype = "snmf/l")
 
 ## Example output from the detect.cps() function
-> detect.cps(sim2, mindist = 50, nruns = 20)
-$rank
-[1] 5
+detect.cps(sim2, mindist = 50, nruns = 20)
 
-$change_points
-    T stat_test
-1  99      TRUE
-2 148     FALSE
-
-$compute_time
-Time difference of 15.8113 mins
+# $rank
+# [1] 5
+#
+# $change_points
+#    T stat_test
+# 1  99      TRUE
+# 2 148     FALSE
+#
+# $compute_time
+# Time difference of 15.8113 mins
 
 }
 \references{

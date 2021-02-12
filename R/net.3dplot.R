@@ -33,7 +33,7 @@
 #' net.3dplot(adjmatrix, communities = comms, colors = colrs)
 #'
 #' ## The default color palette is defined as follows
-#' c("#D32F2F", "#303F9F", "#388E3C", "#FFEB3B", "#03A9F4", "#FF9800", "#673AB7",
+#' ## c("#D32F2F", "#303F9F", "#388E3C", "#FFEB3B", "#03A9F4", "#FF9800", "#673AB7",
 #' ## "#CDDC39", "#9C27B0", "#795548", "#212121", "#009688", "#FFC0CB")
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}

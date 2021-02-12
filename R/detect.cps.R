@@ -5,9 +5,6 @@
 #' @description This function detects multiple change points in the network (or clustering) structure of multivariate high-dimensional time series using
 #' non-negative matrix factorization and a binary search.
 #'
-#' @importFrom doParallel registerDoParallel
-#' @importFrom parallel detectCores
-#'
 #' @param Y A numerical matrix representing the multivariate time series, with the columns representing its components.
 #' @param mindist A positive integer with default value equal to 35. It is used to define the minimum distance acceptable between detected change points.
 #' @param nruns A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.
@@ -39,31 +36,27 @@
 #'
 #' ## Change point detection for a multivariate data set, sim2, with non-default values
 #' detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
-#'    alpha = 0.001, rank = 7, algtype = "snmf/l")
+#' alpha = 0.001, rank = 7, algtype = "snmf/l")
 #'
 #' ## Example output from the detect.cps() function
-#' > detect.cps(sim2, mindist = 50, nruns = 20)
-#' $rank
-#' [1] 5
+#' detect.cps(sim2, mindist = 50, nruns = 20)
 #'
-#' $change_points
-#'     T stat_test
-#' 1  99      TRUE
-#' 2 148     FALSE
-#'
-#' $compute_time
-#' Time difference of 15.8113 mins
+#' # $rank
+#' # [1] 5
+#' #
+#' # $change_points
+#' #    T stat_test
+#' # 1  99      TRUE
+#' # 2 148     FALSE
+#' #
+#' # $compute_time
+#' # Time difference of 15.8113 mins
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), preprint.
 
 detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, rank = "optimal", algtype = "brunet"){
-
-  # Parallelization setup
-  n.cores = detectCores()
-  registerDoParallel(n.cores)
-  print(paste("Number of cores:", n.cores))
 
   # Find T as the number of rows in the input matrix
   T = nrow(Y)
