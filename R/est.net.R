@@ -23,30 +23,28 @@
 #'
 #' @examples
 #' ## Estimating the network for a multivariate data set, "sim2" using default settings
-#' est.net(sim2)
+#' \donttest{est.net(sim2)}
 #'
 #' ## Estimating the network for a multivariate data set, "sim2", using hierarchical
 #' ## clustering to generate the adjacency matrix with a cutoff value of 7 clusters
-#' est.net(sim2, nruns = 100, lambda = 7)
+#' \donttest{est.net(sim2, nruns = 100, lambda = 7)}
 #'
 #' ## Estimating the network for a multivariate data set, "sim2", and using a cutoff
 #' ## value for the adjacency matrix to enforce sparsity, where the cutoff is 0.5
-#' est.net(sim2, nruns = 100, lambda = 0.5)
+#' \donttest{est.net(sim2, nruns = 100, lambda = 0.5)}
 #'
 #' ## Estimating the network for a multivariate data set, "sim2"
-#' est.net(sim2, rank = 4)
+#' \donttest{est.net(sim2, rank = 4)}
 #'
 #' ## Estimating the network for a multivariate data set, "sim2", using the "snmf/l"
 #' ## algorithm for NMF
-#' est.net(sim2, algtype = "snmf/l")
+#' \donttest{est.net(sim2, algtype = "snmf/l")}
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), preprint.
 
 est.net = function(Y, nruns = 50, lambda = 7, rank = "optimal", algtype = "brunet") {
-
-  set.seed(2034968)
 
   # Define the Y as a matrix
   Y = as.matrix(Y)

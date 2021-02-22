@@ -33,12 +33,12 @@ perm_distr = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type) {
     upper1  = split.times[ik+2]
 
     # Define the T.block and permute
-    T.block    = curr.subj[which(x<=upper1 & x>lower1),]
+    T.block = curr.subj[which(x<=upper1 & x>lower1),]
 
     # Loop through to find the sum of the left and right sides for each run
     curr.results = c()
     for(i in 1:n.rep){
-      perm.block = fabisearch:::permute_split(T.block)
+      perm.block = permute_split(T.block)
 
       # Fit NMF to the left and right sides
       l.NMF = nmf(perm.block[rownames(perm.block) %in% which(x<=T.split & x>lower1),], rank=n.rank, method=alg.type)

@@ -24,18 +24,18 @@ This function takes a Gordon atlas defined adjacency matrix and returns a 3D plo
 }
 \examples{
 ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default settings
-net.3dplot(adjmatrix)
+\donttest{net.3dplot(adjmatrix)}
 
 ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default colours but only
 ## the "Visual", "FrontoParietal", and "Auditory" communities
 comms = c("Visual", "FrontoParietal", "Auditory")
-net.3dplot(adjmatrix, communities = comms)
+\donttest{net.3dplot(adjmatrix, communities = comms)}
 
 ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with red, blue, and green
 ## nodes to denote the "Default", "SMhand", and "Visual" communities
 comms = c("Default", "SMhand", "Visual")
 colrs = c("#FF0000", "#00FF00", "#0000FF")
-net.3dplot(adjmatrix, communities = comms, colors = colrs)
+\donttest{net.3dplot(adjmatrix, communities = comms, colors = colrs)}
 
 ## The default color palette is defined as follows
 ## c("#D32F2F", "#303F9F", "#388E3C", "#FFEB3B", "#03A9F4", "#FF9800", "#673AB7",

@@ -26,20 +26,20 @@
 #'
 #' @examples
 #' ## Change point detection for a multivariate data set, sim2, using the default settings
-#' detect.cps(sim2)
+#' \donttest{detect.cps(sim2)}
 #'
 #' ## Change point detection for a multivariate data set, sim2, with an alpha value of 0.05
-#' detect.cps(sim2, alpha = 0.05)
+#' \donttest{detect.cps(sim2, alpha = 0.05)}
 #'
 #' ## Change point detection for a multivariate data set, sim2, with a prespecified rank of 6
-#' detect.cps(sim2, rank = 6)
+#' \donttest{detect.cps(sim2, rank = 6)}
 #'
 #' ## Change point detection for a multivariate data set, sim2, with non-default values
-#' detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
-#' alpha = 0.001, rank = 7, algtype = "snmf/l")
+#' \donttest{detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
+#' alpha = 0.001, rank = 7, algtype = "snmf/l")}
 #'
 #' ## Example output from the detect.cps() function
-#' detect.cps(sim2, mindist = 50, nruns = 20)
+#' \donttest{detect.cps(sim2, mindist = 50, nruns = 20)}
 #'
 #' # $rank
 #' # [1] 5
@@ -66,9 +66,6 @@ detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, ra
   upper = T
   x = 1:T
 
-  # Set seed
-  set.seed(123)
-
   # Start timer for finding how long it took to compute
   compute.T.start = Sys.time()
 
@@ -87,16 +84,16 @@ detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, ra
   # Define split.index and optimal.ranks, need to define outside of function so "Recall" works inside the function
   split.index   = c()
   # Define the original splits
-  orig.splits = fabisearch:::split_all(Y, split.index, lower, upper, x, mindist, nruns, n.rank, algtype)
+  orig.splits = split_all(Y, split.index, lower, upper, x, mindist, nruns, n.rank, algtype)
 
   # Define the refitted splits
-  refit.splits = fabisearch:::refit_splits(orig.splits, Y, T, x, nreps, n.rank, algtype)
+  refit.splits = refit_splits(orig.splits, Y, T, x, nreps, n.rank, algtype)
 
   # Define the permutation distribution to compare with refitted splits
-  perm.distr = fabisearch:::perm_distr(orig.splits, Y, T, x, nreps, n.rank, algtype)
+  perm.distr = perm_distr(orig.splits, Y, T, x, nreps, n.rank, algtype)
 
   # Determine which splits are significant
-  sign.splits = fabisearch:::sign_splits(orig.splits, refit.splits, perm.distr, alpha)
+  sign.splits = sign_splits(orig.splits, refit.splits, perm.distr, alpha)
 
   # End timer
   compute.T.end = Sys.time()

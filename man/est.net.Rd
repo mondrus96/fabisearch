@@ -31,22 +31,22 @@ This function estimates sparse networks using non-negative matrix factorization 
 }
 \examples{
 ## Estimating the network for a multivariate data set, "sim2" using default settings
-est.net(sim2)
+\donttest{est.net(sim2)}
 
 ## Estimating the network for a multivariate data set, "sim2", using hierarchical
 ## clustering to generate the adjacency matrix with a cutoff value of 7 clusters
-est.net(sim2, nruns = 100, lambda = 7)
+\donttest{est.net(sim2, nruns = 100, lambda = 7)}
 
 ## Estimating the network for a multivariate data set, "sim2", and using a cutoff
 ## value for the adjacency matrix to enforce sparsity, where the cutoff is 0.5
-est.net(sim2, nruns = 100, lambda = 0.5)
+\donttest{est.net(sim2, nruns = 100, lambda = 0.5)}
 
 ## Estimating the network for a multivariate data set, "sim2"
-est.net(sim2, rank = 4)
+\donttest{est.net(sim2, rank = 4)}
 
 ## Estimating the network for a multivariate data set, "sim2", using the "snmf/l"
 ## algorithm for NMF
-est.net(sim2, algtype = "snmf/l")
+\donttest{est.net(sim2, algtype = "snmf/l")}
 
 }
 \references{

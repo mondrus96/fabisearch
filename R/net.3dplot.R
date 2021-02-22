@@ -19,18 +19,18 @@
 #'
 #' @examples
 #' ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default settings
-#' net.3dplot(adjmatrix)
+#' \donttest{net.3dplot(adjmatrix)}
 #'
 #' ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default colours but only
 #' ## the "Visual", "FrontoParietal", and "Auditory" communities
 #' comms = c("Visual", "FrontoParietal", "Auditory")
-#' net.3dplot(adjmatrix, communities = comms)
+#' \donttest{net.3dplot(adjmatrix, communities = comms)}
 #'
 #' ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with red, blue, and green
 #' ## nodes to denote the "Default", "SMhand", and "Visual" communities
 #' comms = c("Default", "SMhand", "Visual")
 #' colrs = c("#FF0000", "#00FF00", "#0000FF")
-#' net.3dplot(adjmatrix, communities = comms, colors = colrs)
+#' \donttest{net.3dplot(adjmatrix, communities = comms, colors = colrs)}
 #'
 #' ## The default color palette is defined as follows
 #' ## c("#D32F2F", "#303F9F", "#388E3C", "#FFEB3B", "#03A9F4", "#FF9800", "#673AB7",
@@ -41,8 +41,6 @@
 #' (2021), preprint.
 
 net.3dplot = function(adjmatrix, communities = NULL, colors = NULL){
-
-  set.seed(685829)
 
   # If colors are null, define a color palette
   if(is.null(colors)){
@@ -62,8 +60,6 @@ net.3dplot = function(adjmatrix, communities = NULL, colors = NULL){
   }
 
   # Get coordinates for the main brain frame
-  lcoord = fabisearch:::lcoord
-  rcoord = fabisearch:::rcoord
   coord = rbind(lcoord, rcoord)
 
   # Plot the main brain frame
@@ -74,7 +70,6 @@ net.3dplot = function(adjmatrix, communities = NULL, colors = NULL){
          mar = c(0, 0, 0, 0))
 
   # Get the coordinates for the Gordon atlas regions
-  gordon.atlas = fabisearch:::gordon.atlas
   coord333 = as.matrix(gordon.atlas[,c('x.mni','y.mni','z.mni')])
   rownames(coord333) = paste0(1:333)
   name.netwk = as.matrix(gordon.atlas[,c('Community')])

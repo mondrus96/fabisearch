@@ -46,20 +46,20 @@ non-negative matrix factorization and a binary search.
 }
 \examples{
 ## Change point detection for a multivariate data set, sim2, using the default settings
-detect.cps(sim2)
+\donttest{detect.cps(sim2)}
 
 ## Change point detection for a multivariate data set, sim2, with an alpha value of 0.05
-detect.cps(sim2, alpha = 0.05)
+\donttest{detect.cps(sim2, alpha = 0.05)}
 
 ## Change point detection for a multivariate data set, sim2, with a prespecified rank of 6
-detect.cps(sim2, rank = 6)
+\donttest{detect.cps(sim2, rank = 6)}
 
 ## Change point detection for a multivariate data set, sim2, with non-default values
-detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
-alpha = 0.001, rank = 7, algtype = "snmf/l")
+\donttest{detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
+alpha = 0.001, rank = 7, algtype = "snmf/l")}
 
 ## Example output from the detect.cps() function
-detect.cps(sim2, mindist = 50, nruns = 20)
+\donttest{detect.cps(sim2, mindist = 50, nruns = 20)}
 
 # $rank
 # [1] 5
