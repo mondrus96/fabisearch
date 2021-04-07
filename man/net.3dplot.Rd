@@ -4,7 +4,7 @@
 \alias{net.3dplot}
 \title{3D network plot of an adjacency matrix between pairs of change points}
 \usage{
-net.3dplot(adjmatrix, communities = NULL, colors = NULL)
+net.3dplot(adjmatrix, communities = NULL, colors = NULL, coordROIs = NULL)
 }
 \arguments{
 \item{adjmatrix}{A numerical matrix of dimension 333*333 (Gordon atlas). This is the adjacency matrix to be plotted.}
@@ -15,6 +15,10 @@ net.3dplot(adjmatrix, communities = NULL, colors = NULL)
 
 \item{colors}{A vector of character strings specifying the hex codes for node colors to distinguish each community. By default, each community is given
 a predefined, unique color.}
+
+\item{coordROIs}{A dataframe of community tags and Montreal Neurological Institute (MNI) coordinates for regions of interest (ROIs) to plot. Format of the
+matrix is as follows: first column is a string of community labels, then the subsequent three columns are the x, y, and z coordinates respectively. See
+?gordon.atlas for an example using the Gordon atlas, which is also the default value for this parameter.}
 }
 \value{
 A 3D network plot of an adjacency matrix between pairs of change points.
@@ -44,7 +48,7 @@ colrs = c("#FF0000", "#00FF00", "#0000FF")
 }
 \references{
 "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
-(2021), preprint.
+(2021), <arXiv:2103.06347>.
 }
 \author{
 Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}

@@ -38,7 +38,7 @@ This function finds the optimal rank for non-negative matrix factorization (NMF)
 }
 \references{
 "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
-(2021), preprint.
+(2021), <arXiv:2103.06347>.
 }
 \author{
 Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}

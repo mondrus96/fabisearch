@@ -27,3 +27,15 @@
 #'
 #' @source \url{https://www.nitrc.org/projects/nyu_trt}
 "adjmatrix"
+
+#' Gordon atlas coordinates
+#'
+#' A dataframe of the Gordon et al. (2016) atlas to use with the \code{\link{net.3dplot}()} function. Each row corresponds to a region of interest
+#' (ROI) to be plotted using the Montreal Neurological Institute (MNI) space. The first column corresponds to the community labels as a string,
+#' the second, third, and fourth columns correspond to the X, Y, and Z coordinates of the ROIs in MNI space. See Gordon et al. (2016)
+#' <doi:10.1093/cercor/bhu239> for more details.
+#'
+#' @format A dataframe with 333 rows and 4 columns/variables.
+#'
+#' @source \url{https://doi.org/10.1093/cercor/bhu239}
+"gordatlas"

@@ -54,7 +54,7 @@
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
-#' (2021), preprint.
+#' (2021), <arXiv:2103.06347>.
 
 detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, rank = "optimal", algtype = "brunet"){
 

@@ -13,6 +13,9 @@
 #' "VentralAttn", "Salience", and "DorsalAttn".
 #' @param colors A vector of character strings specifying the hex codes for node colors to distinguish each community. By default, each community is given
 #' a predefined, unique color.
+#' @param coordROIs A dataframe of community tags and Montreal Neurological Institute (MNI) coordinates for regions of interest (ROIs) to plot. Format of the
+#' matrix is as follows: first column is a string of community labels, then the subsequent three columns are the x, y, and z coordinates respectively. See
+#' ?gordon.atlas for an example using the Gordon atlas, which is also the default value for this parameter.
 #'
 #' @return A 3D network plot of an adjacency matrix between pairs of change points.
 #' @export
@@ -38,9 +41,9 @@
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
-#' (2021), preprint.
+#' (2021), <arXiv:2103.06347>.
 
-net.3dplot = function(adjmatrix, communities = NULL, colors = NULL){
+net.3dplot = function(adjmatrix, communities = NULL, colors = NULL, coordROIs = NULL){
 
   # If colors are null, define a color palette
   if(is.null(colors)){
@@ -69,14 +72,14 @@ net.3dplot = function(adjmatrix, communities = NULL, colors = NULL){
          box=F,axes=F,xlab='',ylab='',zlab='',
          mar = c(0, 0, 0, 0))
 
-  # Get the coordinates for the Gordon atlas regions
-  coord333 = as.matrix(gordon.atlas[,c('x.mni','y.mni','z.mni')])
-  rownames(coord333) = paste0(1:333)
-  name.netwk = as.matrix(gordon.atlas[,c('Community')])
+  # If input coordinates is not available, assume Gordon atlas
+  if(is.null(coordROIs)){
+    coordROIs = gordatlas
+  }
 
   # If communities is null, plot all communities
   if(is.null(communities)){
-    communities = unique(name.netwk)
+    communities = unique(coordROIs[,1])
   }
 
   # Prepare the adjacency matrix for plotting
@@ -94,14 +97,14 @@ net.3dplot = function(adjmatrix, communities = NULL, colors = NULL){
     curr.netwk = communities[i]
 
     # Find the coordinates of this community
-    coord.comm = coord333[name.netwk == curr.netwk,]
+    coord.comm = coordROIs[coordROIs[,1] == curr.netwk, 2:4]
 
     # Plot these coordinates as nodes
     plot3d(coord.comm, col = colors[i], size=12, add=T)
   }
 
   # Narrow down ma3d to only include the edges for communities that were specified
-  ROI.vals = (1:333)[name.netwk %in% communities]
+  ROI.vals = (1:nrow(coordROIs))[coordROIs[,1] %in% communities]
   ma3d = ma3d[ma3d[,1] %in% ROI.vals & ma3d[,2] %in% ROI.vals,]
 
   # Add a legend to the plot to denote the node communities
@@ -110,7 +113,7 @@ net.3dplot = function(adjmatrix, communities = NULL, colors = NULL){
 
   # Plot the edges in ma3d
   for (i in 1:dim(ma3d)[1]) {
-    lines3d(coord333[unlist(ma3d[i,1:2]),],
+    lines3d(coordROIs[unlist(ma3d[i,1:2]), 2:4],
             size=2,
             add=T,
             col="black",

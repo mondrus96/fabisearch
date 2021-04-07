@@ -2,6 +2,8 @@
 # Recalculates the NMF basis matrix difference between each pair of splits
 
 #' @importFrom NMF nmf
+#' @importFrom foreach foreach
+#' @import doParallel
 
 refit_splits = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type){
 
@@ -12,6 +14,9 @@ refit_splits = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type){
   # n.rep       = number of times to run the NMF algorithm for statistical inference
   # n.rank      = value of rank to use in the NMF function
   # alg.type    = algorithm type -> check ?nmf for details, under "method"
+
+  # Register parallel backend
+  registerDoParallel(detectCores())
 
   # Output will be saved as refit.results
   refit.results = list()
@@ -33,13 +38,12 @@ refit_splits = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type){
     upper1  = split.times[ij+2]
 
     # Loop through to find the sum of the left and right sides for each run
-    curr.results = c()
-    for(i in 1:n.rep){
+    curr.results = foreach(i = 1:n.rep, .combine = "c", .export = "nmf") %dopar% {
       # Fit NMF to the left and right sides
       l.NMF = nmf(curr.subj[which(x<=T.split & x>lower1),], rank=n.rank, method=alg.type)
       r.NMF = nmf(curr.subj[which(x<=upper1 & x>T.split),], rank=n.rank, method=alg.type)
 
-      curr.results = c(curr.results, sum(l.NMF@residuals + r.NMF@residuals), use.names = FALSE)
+      return(sum(l.NMF@residuals + r.NMF@residuals))
     }
 
     # Compile results into refit.results matrix
