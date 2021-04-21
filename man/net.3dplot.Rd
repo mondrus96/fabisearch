@@ -7,10 +7,10 @@
 net.3dplot(adjmatrix, communities = NULL, colors = NULL, coordROIs = NULL)
 }
 \arguments{
-\item{adjmatrix}{A numerical matrix of dimension 333*333 (Gordon atlas). This is the adjacency matrix to be plotted.}
+\item{adjmatrix}{A numerical matrix of the adjacency matrix to be plotted.}
 
-\item{communities}{A vector of character strings specifying the communities to plot. By default, all communities are plotted. Communities available are:
-"Default", "SMhand", "SMmouth", "Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc",
+\item{communities}{A vector of character strings specifying the communities to plot. By default, all communities are plotted. Communities available for the
+Gordon atlas are: "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc",
 "VentralAttn", "Salience", and "DorsalAttn".}
 
 \item{colors}{A vector of character strings specifying the hex codes for node colors to distinguish each community. By default, each community is given
@@ -24,7 +24,7 @@ matrix is as follows: first column is a string of community labels, then the sub
 A 3D network plot of an adjacency matrix between pairs of change points.
 }
 \description{
-This function takes a Gordon atlas defined adjacency matrix and returns a 3D plot of it.
+This function takes an adjacency matrix of a brain network and returns a 3D plot of it.
 }
 \examples{
 ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default settings

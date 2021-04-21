@@ -2,15 +2,15 @@
 # The function that plots the adjacency matrix in 3D w/ brain, utilizes the Gordon atlas
 
 #' 3D network plot of an adjacency matrix between pairs of change points
-#' @description This function takes a Gordon atlas defined adjacency matrix and returns a 3D plot of it.
+#' @description This function takes an adjacency matrix of a brain network and returns a 3D plot of it.
 #'
 #' @importFrom rgl par3d mfrow3d plot3d lines3d legend3d
 #' @importFrom reshape2 melt
 #'
-#' @param adjmatrix A numerical matrix of dimension 333*333 (Gordon atlas). This is the adjacency matrix to be plotted.
-#' @param communities A vector of character strings specifying the communities to plot. By default, all communities are plotted. Communities available are:
-#' "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc",
-#' "VentralAttn", "Salience", and "DorsalAttn".
+#' @param adjmatrix A numerical matrix of the adjacency matrix to be plotted.
+#' @param ROIs Either a vector of character strings specifying the communities to plot, or a vector of integers specifying which ROIs to plot by their ID. By
+#' default, all communities and ROIs are plotted. Communities available for the Gordon atlas are: "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal",
+#' "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc", "VentralAttn", "Salience", and "DorsalAttn".
 #' @param colors A vector of character strings specifying the hex codes for node colors to distinguish each community. By default, each community is given
 #' a predefined, unique color.
 #' @param coordROIs A dataframe of community tags and Montreal Neurological Institute (MNI) coordinates for regions of interest (ROIs) to plot. Format of the
@@ -43,7 +43,7 @@
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), <arXiv:2103.06347>.
 
-net.3dplot = function(adjmatrix, communities = NULL, colors = NULL, coordROIs = NULL){
+net.3dplot = function(adjmatrix, ROIs = NULL, colors = NULL, coordROIs = NULL){
 
   # If colors are null, define a color palette
   if(is.null(colors)){
@@ -77,9 +77,13 @@ net.3dplot = function(adjmatrix, communities = NULL, colors = NULL, coordROIs = 
     coordROIs = gordatlas
   }
 
-  # If communities is null, plot all communities
-  if(is.null(communities)){
-    communities = unique(coordROIs[,1])
+  # If ROIs is null, plot all ROIs
+  if(is.null(ROIs)){
+    ROIs = coordROIs
+  } else if (class(ROIs) == "character"){
+    ROIs = coordROIs[coordROIs[,1] %in% ROIs, ]
+  } else if (is.numeric(ROIs)){
+    ROIs = coordROIs[1:nrow(coordROIs) %in% ROIs, ]
   }
 
   # Prepare the adjacency matrix for plotting
@@ -92,24 +96,26 @@ net.3dplot = function(adjmatrix, communities = NULL, colors = NULL, coordROIs = 
   ma3d = ma3d[ma3d[,3] == 1,]
 
   # Loop through and plot specified communities
-  for(i in 1:length(communities)){
+  for(i in 1:length(unique(ROIs[,1]))){
     # Define the current community
-    curr.netwk = communities[i]
+    curr.comm = unique(ROIs[,1])[i]
 
-    # Find the coordinates of this community
-    coord.comm = coordROIs[coordROIs[,1] == curr.netwk, 2:4]
+    # Find the coordinates of this community and the relevant nodes
+    coord.comm = ROIs[ROIs[,1] == curr.comm, 2:4]
 
     # Plot these coordinates as nodes
     plot3d(coord.comm, col = colors[i], size=12, add=T)
   }
 
-  # Narrow down ma3d to only include the edges for communities that were specified
-  ROI.vals = (1:nrow(coordROIs))[coordROIs[,1] %in% communities]
+  # Narrow down ma3d to only include the edges for nodes that were specified
+  ROI.vals = as.numeric(rownames(ROIs))
   ma3d = ma3d[ma3d[,1] %in% ROI.vals & ma3d[,2] %in% ROI.vals,]
 
-  # Add a legend to the plot to denote the node communities
-  communities = cbind(communities, colors[1:length(communities)])
-  legend3d("topright", pch = 16, legend = communities[,1], col = communities[,2], cex=1, inset=c(0.02))
+  # Add a legend to the plot to denote the node communities, if communities exist
+  if(length(unique(ROIs[,1])) > 1){
+    communities = cbind(as.vector(unique(ROIs[,1])), colors[1:length(unique(ROIs[,1]))])
+    legend3d("topright", pch = 16, legend = communities[,1], col = communities[,2], cex=1, inset=c(0.02))
+  }
 
   # Plot the edges in ma3d
   for (i in 1:dim(ma3d)[1]) {
