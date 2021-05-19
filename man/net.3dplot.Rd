@@ -4,14 +4,14 @@
 \alias{net.3dplot}
 \title{3D network plot of an adjacency matrix between pairs of change points}
 \usage{
-net.3dplot(adjmatrix, communities = NULL, colors = NULL, coordROIs = NULL)
+net.3dplot(adjmatrix, ROIs = NULL, colors = NULL, coordROIs = NULL)
 }
 \arguments{
 \item{adjmatrix}{A numerical matrix of the adjacency matrix to be plotted.}
 
-\item{communities}{A vector of character strings specifying the communities to plot. By default, all communities are plotted. Communities available for the
-Gordon atlas are: "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc",
-"VentralAttn", "Salience", and "DorsalAttn".}
+\item{ROIs}{Either a vector of character strings specifying the communities to plot, or a vector of integers specifying which ROIs to plot by their ID. By
+default, all communities and ROIs are plotted. Communities available for the Gordon atlas are: "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal",
+"Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc", "VentralAttn", "Salience", and "DorsalAttn".}
 
 \item{colors}{A vector of character strings specifying the hex codes for node colors to distinguish each community. By default, each community is given
 a predefined, unique color.}
@@ -33,13 +33,13 @@ This function takes an adjacency matrix of a brain network and returns a 3D plot
 ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default colours but only
 ## the "Visual", "FrontoParietal", and "Auditory" communities
 comms = c("Visual", "FrontoParietal", "Auditory")
-\donttest{net.3dplot(adjmatrix, communities = comms)}
+\donttest{net.3dplot(adjmatrix, ROIs = comms)}
 
 ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with red, blue, and green
 ## nodes to denote the "Default", "SMhand", and "Visual" communities
 comms = c("Default", "SMhand", "Visual")
 colrs = c("#FF0000", "#00FF00", "#0000FF")
-\donttest{net.3dplot(adjmatrix, communities = comms, colors = colrs)}
+\donttest{net.3dplot(adjmatrix, ROIs = comms, colors = colrs)}
 
 ## The default color palette is defined as follows
 ## c("#D32F2F", "#303F9F", "#388E3C", "#FFEB3B", "#03A9F4", "#FF9800", "#673AB7",
