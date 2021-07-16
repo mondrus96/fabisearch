@@ -7,7 +7,7 @@
 opt.rank(Y, nruns = 50, algtype = "brunet")
 }
 \arguments{
-\item{Y}{A numerical matrix representing the multivariate time series, with the columns representing its components.}
+\item{Y}{An input multivariate time series in matrix format, with variables organized in columns and time points in rows.}
 
 \item{nruns}{A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.}
 

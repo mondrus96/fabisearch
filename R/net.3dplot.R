@@ -7,15 +7,16 @@
 #' @importFrom rgl par3d mfrow3d plot3d lines3d legend3d
 #' @importFrom reshape2 melt
 #'
-#' @param adjmatrix A numerical matrix of the adjacency matrix to be plotted.
+#' @param A An adjacency matrix to be plotted in numerical matrix format.
 #' @param ROIs Either a vector of character strings specifying the communities to plot, or a vector of integers specifying which ROIs to plot by their ID. By
-#' default, all communities and ROIs are plotted. Communities available for the Gordon atlas are: "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal",
-#' "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc", "VentralAttn", "Salience", and "DorsalAttn".
+#' default it is set to NULL, and all communities and ROIs are plotted. Communities available for the Gordon atlas are: "Default", "SMhand", "SMmouth",
+#' "Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc", "VentralAttn", "Salience", and "DorsalAttn".
 #' @param colors A vector of character strings specifying the hex codes for node colors to distinguish each community. By default, each community is given
 #' a predefined, unique color.
-#' @param coordROIs A dataframe of community tags and Montreal Neurological Institute (MNI) coordinates for regions of interest (ROIs) to plot. Format of the
-#' matrix is as follows: first column is a string of community labels, then the subsequent three columns are the x, y, and z coordinates respectively. See
-#' ?gordon.atlas for an example using the Gordon atlas, which is also the default value for this parameter.
+#' @param coordROIs A dataframe of community tags and Montreal Neurological Institute (MNI) coordinates for regions of interest (ROIs) to plot, which is by
+#' default set to \code{NULL} and uses the Gordon atlas. See ?gordon.atlas for an example using the Gordon atlas. Format of the dataframe is as follows: first column
+#' is a string of community labels, then the subsequent three columns are the x, y, and z coordinates respectively. See \code{AALatlas} and \code{gordatlas}
+#' for examples.
 #'
 #' @return A 3D network plot of an adjacency matrix between pairs of change points.
 #' @export
@@ -43,7 +44,7 @@
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), <arXiv:2103.06347>.
 
-net.3dplot = function(adjmatrix, ROIs = NULL, colors = NULL, coordROIs = NULL){
+net.3dplot = function(A, ROIs = NULL, colors = NULL, coordROIs = NULL){
 
   # If colors are null, define a color palette
   if(is.null(colors)){
@@ -87,9 +88,9 @@ net.3dplot = function(adjmatrix, ROIs = NULL, colors = NULL, coordROIs = NULL){
   }
 
   # Prepare the adjacency matrix for plotting
-  colnames(adjmatrix) = rownames(adjmatrix) = NULL
-  adjmatrix[!lower.tri(adjmatrix)] = NA
-  ma3d = melt(adjmatrix, na.rm = TRUE)
+  colnames(A) = rownames(A) = NULL
+  A[!lower.tri(A)] = NA
+  ma3d = melt(A, na.rm = TRUE)
 
   # Remove any edges which connect nodes to themselves, keep only entries where there is a connection
   ma3d = ma3d[!ma3d[,1] == ma3d[,2],]

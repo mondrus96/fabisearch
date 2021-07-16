@@ -6,7 +6,7 @@
 #'
 #' @importFrom NMF nmf
 #'
-#' @param Y A numerical matrix representing the multivariate time series, with the columns representing its components.
+#' @param Y An input multivariate time series in matrix format, with variables organized in columns and time points in rows.
 #' @param nruns A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.
 #' @param algtype A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 #' \code{\link[NMF]{nmf}} for more information on the available algorithms.

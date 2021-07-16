@@ -15,7 +15,7 @@ detect.cps(
 )
 }
 \arguments{
-\item{Y}{A numerical matrix representing the multivariate time series, with the columns representing its components.}
+\item{Y}{An input multivariate time series in matrix format, with variables organized in columns and time points in rows.}
 
 \item{mindist}{A positive integer with default value equal to 35. It is used to define the minimum distance acceptable between detected change points.}
 

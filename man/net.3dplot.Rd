@@ -4,21 +4,22 @@
 \alias{net.3dplot}
 \title{3D network plot of an adjacency matrix between pairs of change points}
 \usage{
-net.3dplot(adjmatrix, ROIs = NULL, colors = NULL, coordROIs = NULL)
+net.3dplot(A, ROIs = NULL, colors = NULL, coordROIs = NULL)
 }
 \arguments{
-\item{adjmatrix}{A numerical matrix of the adjacency matrix to be plotted.}
+\item{A}{An adjacency matrix to be plotted in numerical matrix format.}
 
 \item{ROIs}{Either a vector of character strings specifying the communities to plot, or a vector of integers specifying which ROIs to plot by their ID. By
-default, all communities and ROIs are plotted. Communities available for the Gordon atlas are: "Default", "SMhand", "SMmouth", "Visual", "FrontoParietal",
-"Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc", "VentralAttn", "Salience", and "DorsalAttn".}
+default it is set to NULL, and all communities and ROIs are plotted. Communities available for the Gordon atlas are: "Default", "SMhand", "SMmouth",
+"Visual", "FrontoParietal", "Auditory", "None", "CinguloParietal", "RetrosplenialTemporal", "CinguloOperc", "VentralAttn", "Salience", and "DorsalAttn".}
 
 \item{colors}{A vector of character strings specifying the hex codes for node colors to distinguish each community. By default, each community is given
 a predefined, unique color.}
 
-\item{coordROIs}{A dataframe of community tags and Montreal Neurological Institute (MNI) coordinates for regions of interest (ROIs) to plot. Format of the
-matrix is as follows: first column is a string of community labels, then the subsequent three columns are the x, y, and z coordinates respectively. See
-?gordon.atlas for an example using the Gordon atlas, which is also the default value for this parameter.}
+\item{coordROIs}{A dataframe of community tags and Montreal Neurological Institute (MNI) coordinates for regions of interest (ROIs) to plot, which is by
+default set to \code{NULL} and uses the Gordon atlas. See ?gordon.atlas for an example using the Gordon atlas. Format of the dataframe is as follows: first column
+is a string of community labels, then the subsequent three columns are the x, y, and z coordinates respectively. See \code{AALatlas} and \code{gordatlas}
+for examples.}
 }
 \value{
 A 3D network plot of an adjacency matrix between pairs of change points.

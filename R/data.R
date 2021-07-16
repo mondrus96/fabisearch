@@ -12,7 +12,8 @@
 
 #' 333 ROI data from the NYU test-retest resting state fMRI data set
 #'
-#' A data matrix of the second scan from the first subject from the NYU test-restest resting-state fMRI data set.
+#' A data matrix of the second scan from the first subject from the NYU test-retest resting-state fMRI data set. Variables/nodes are defined
+#' using the Gordon et al. (2016) atlas , which can be accessed as the \code{gordatlas} dataframe.
 #'
 #' @format A data matrix with 197 rows and 333 columns/variables, where each column corresponds to an ROI from the Gordon atlas.
 #'
@@ -21,16 +22,17 @@
 
 #' 90 ROI data from the NYU test-retest resting state fMRI data set
 #'
-#' A data matrix of the second scan from the first subject from the NYU test-restest resting-state fMRI data set.
+#' A data matrix of the second scan from the first subject from the NYU test-retest resting-state fMRI data set.
 #'
-#' @format A data matrix with 197 rows and 90 columns/variables, where each column corresponds to an ROI from the AAL atlas.
+#' A data matrix of the second scan from the first subject from the NYU test-retest resting-state fMRI data set. Variables/nodes are defined
+#' using the Tzourio-Mazoyer et al. (2002) AAL atlas, which can be accessed as the \code{AALatlas} dataframe.
 #'
 #' @source \url{https://www.nitrc.org/projects/nyu_trt}
 "AALfmri"
 
 #' Adjacency matrix for the NYU test-restest resting-state fMRI data set
 #'
-#' The adjacency matrix calculated from the "fmridata" data set, using the Gordon atlas.
+#' The adjacency matrix calculated from the \code{gordfmri} data set, using the Gordon atlas.
 #'
 #' @format A 333 * 333 matrix, where each entry takes a value 1 (0) if two nodes are (not) connected by an edge, using the Gordon atlas.
 #'

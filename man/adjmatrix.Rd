@@ -14,6 +14,6 @@ A 333 * 333 matrix, where each entry takes a value 1 (0) if two nodes are (not) 
 adjmatrix
 }
 \description{
-The adjacency matrix calculated from the "fmridata" data set, using the Gordon atlas.
+The adjacency matrix calculated from the \code{gordfmri} data set, using the Gordon atlas.
 }
 \keyword{datasets}

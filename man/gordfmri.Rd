@@ -14,6 +14,7 @@ A data matrix with 197 rows and 333 columns/variables, where each column corresp
 gordfmri
 }
 \description{
-A data matrix of the second scan from the first subject from the NYU test-restest resting-state fMRI data set.
+A data matrix of the second scan from the first subject from the NYU test-retest resting-state fMRI data set. Variables/nodes are defined
+using the Gordon et al. (2016) atlas , which can be accessed as the \code{gordatlas} dataframe.
 }
 \keyword{datasets}

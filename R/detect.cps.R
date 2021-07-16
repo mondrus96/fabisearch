@@ -5,7 +5,7 @@
 #' @description This function detects multiple change points in the network (or clustering) structure of multivariate high-dimensional time series using
 #' non-negative matrix factorization and a binary search.
 #'
-#' @param Y A numerical matrix representing the multivariate time series, with the columns representing its components.
+#' @param Y An input multivariate time series in matrix format, with variables organized in columns and time points in rows.
 #' @param mindist A positive integer with default value equal to 35. It is used to define the minimum distance acceptable between detected change points.
 #' @param nruns A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.
 #' @param nreps A positive integer with default value equal to 100. It is used to define the number of permutations for the statistical inference procedure.
@@ -86,14 +86,20 @@ detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, ra
   # Define the original splits
   orig.splits = split_all(Y, split.index, lower, upper, x, mindist, nruns, n.rank, algtype)
 
-  # Define the refitted splits
-  refit.splits = refit_splits(orig.splits, Y, T, x, nreps, n.rank, algtype)
+  # Check whether any of the change points found have a negative change in loss, otherwise do not run rest of procedures
+  if(any(orig.splits$chg.loss < 0)){
+    # Define the refitted splits
+    refit.splits = refit_splits(orig.splits, Y, T, x, nreps, n.rank, algtype)
 
-  # Define the permutation distribution to compare with refitted splits
-  perm.distr = perm_distr(orig.splits, Y, T, x, nreps, n.rank, algtype)
+    # Define the permutation distribution to compare with refitted splits
+    perm.distr = perm_distr(orig.splits, Y, T, x, nreps, n.rank, algtype)
 
-  # Determine which splits are significant
-  sign.splits = sign_splits(orig.splits, refit.splits, perm.distr, alpha)
+    # Determine which splits are significant
+    sign.splits = sign_splits(orig.splits, refit.splits, perm.distr, alpha)
+  } else {
+    # Initialize an empty dataframe
+    sign.splits = data.frame(T = double(), stat_test = logical())
+  }
 
   # End timer
   compute.T.end = Sys.time()
