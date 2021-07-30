@@ -18,9 +18,9 @@ est.net(
 
 \item{lambda}{A positive real number, which defines the clustering method and/or the cutoff value when estimating an adjacency matrix from the computed
 consensus matrix. If lambda = a positive integer value, say 6, complete-linkage, hierarchical clustering is applied to the consensus matrix and the cutoff is at
-6 clusters. If lambda is a vector of positive integer values, say c(4, 5, 6), the same clustering method will be applied for each value sequentially. If lambda
+6 clusters. If lambda is a vector of positive integer values, say c(4, 5, 6), the same clustering method is applied for each value sequentially. If lambda
 = a positive real number, say 0.5, entries in the consensus matrix with a value greater than or equal to 0.5 are labeled 1, while entries less than 0.5 are
-labeled 0. Similarly, if lambda is a vector of positive real numbers, say c(0.1, 0.3, 0.8), the same thresholding method will be applied for each value
+labeled 0. Similarly, if lambda is a vector of positive real numbers, say c(0.1, 0.3, 0.8), the same thresholding method is applied for each value
 sequentially.}
 
 \item{nruns}{A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.}
@@ -33,13 +33,13 @@ rank is used.}
 \code{\link[NMF]{nmf}} for more information on the available algorithms.}
 
 \item{changepoints}{A vector of positive integers with default value equal to \code{NULL}. It is used to specify whether change points exist in the input \eqn{Y}, and
-thus whether \eqn{Y} should be split into multiple stationary segments and networks estimated separately for each. If change points, say c(100, 200) are specified,
-\eqn{Y} will be split at the 100th and 200th row to correspond to 3 stationary segments. Each stationary segment will then be estimated sequentially, and
-returned as a list where each component corresponds to a stationary segment.}
+thus whether \eqn{Y} should be split into multiple stationary segments and networks estimated separately for each segment. If change points, say c(100, 200) are specified,
+\eqn{Y} is split at the 100th and 200th row to correspond to 3 stationary segments. Each stationary segment is then estimated sequentially, and
+a list is returned where each component corresponds to a stationary segment.}
 }
 \value{
 A matrix (or more specifically, an adjacency matrix) denoting the network (or clustering) structure between components of \eqn{Y}. If lambda is a
-vector, a list of adjacency matrices will be returned, where each element of the list corresponds to an element in lambda.
+vector, a list of adjacency matrices is returned, where each element of the list corresponds to an element in lambda.
 }
 \description{
 This function estimates sparse networks using non-negative matrix factorization (NMF) for data between change points.

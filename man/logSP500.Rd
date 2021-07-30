@@ -3,7 +3,7 @@
 \docType{data}
 \name{logSP500}
 \alias{logSP500}
-\title{Daily logarithmic returns for the Standard and Poor's 500}
+\title{Daily adjusted logarithmic returns for the Standard and Poor's 500}
 \format{
 A dataframe with 815 rows and 500 columns/variables.
 }
@@ -11,7 +11,8 @@ A dataframe with 815 rows and 500 columns/variables.
 logSP500
 }
 \description{
-A dataframe of the daily logarithmic returns for the Standard and Poor's 500 (S&P 500) stock market index. Each row corresponds to a trading day
-from 2018-01-01 to 2021-03-31. Data retrieved from Yahoo Finance using the \code{getSymbols()} function from the \code{quantmod} package.
+A dataframe of the daily adjusted logarithmic returns for the Standard and Poor's 500 (S&P 500) stock market index. Each row corresponds to a
+trading day from 2018-01-01 to 2021-03-31. Data was retrieved from Yahoo Finance using the \code{getSymbols()} function from the \code{quantmod}
+package.
 }
 \keyword{datasets}

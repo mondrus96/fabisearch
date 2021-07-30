@@ -22,10 +22,10 @@
 
 #' 90 ROI data from the NYU test-retest resting state fMRI data set
 #'
-#' A data matrix of the second scan from the first subject from the NYU test-retest resting-state fMRI data set.
-#'
 #' A data matrix of the second scan from the first subject from the NYU test-retest resting-state fMRI data set. Variables/nodes are defined
-#' using the Tzourio-Mazoyer et al. (2002) AAL atlas, which can be accessed as the \code{AALatlas} dataframe.
+#' using the Tzourio-Mazoyer et al. (2002) Automatic Anatomical Labeling (AAL) atlas, which can be accessed as the \code{AALatlas} dataframe.
+#'
+#' @format A data matrix with 197 rows and 90 columns/variables, where each column corresponds to an ROI from the AAL atlas.
 #'
 #' @source \url{https://www.nitrc.org/projects/nyu_trt}
 "AALfmri"
@@ -43,7 +43,7 @@
 #'
 #' A dataframe of the Gordon et al. (2016) atlas to use with the \code{\link{net.3dplot}()} function. Each row corresponds to a region of interest
 #' (ROI) to be plotted using the Montreal Neurological Institute (MNI) space. The first column corresponds to the community labels as a string,
-#' the second, third, and fourth columns correspond to the X, Y, and Z coordinates of the ROIs in MNI space. See Gordon et al. (2016)
+#' and the second, third, and fourth columns correspond to the X, Y, and Z coordinates of the ROIs in MNI space, respectively. See Gordon et al. (2016)
 #' <doi:10.1093/cercor/bhu239> for more details.
 #'
 #' @format A dataframe with 333 rows and 4 columns/variables.
@@ -53,10 +53,10 @@
 
 #' Automated Anatomical Labeling (AAL) atlas coordinates
 #'
-#' A dataframe of the Automated Anatomical Labeling from the work of Tzourio-Mazoyer et al. (2002) atlas to use with the \code{\link{net.3dplot}()}
+#' A dataframe of the Automated Anatomical Labeling (AAL) atlas from the work of Tzourio-Mazoyer et al. (2002) atlas to use with the \code{\link{net.3dplot}()}
 #' function. Each row corresponds to a region of interest (ROI) to be plotted using the Montreal Neurological Institute (MNI) space. The first
-#' column corresponds to the community labels (in this atlas, there are none, therefore this column is filled with NA), the second, third, and
-#' fourth columns correspond to the X, Y, and Z coordinates of the ROIs in MNI space. See Tzourio-Mazoyer et al. (2002) <doi:10.1006/nimg.2001.0978>
+#' column corresponds to the community labels (in this atlas, there are none, therefore this column is filled with NA), and the second, third, and
+#' fourth columns correspond to the X, Y, and Z coordinates of the ROIs in MNI space, respectively. See Tzourio-Mazoyer et al. (2002) <doi:10.1006/nimg.2001.0978>
 #' for more details.
 #'
 #' @format A dataframe with 90 rows and 4 columns/variables.
@@ -67,7 +67,7 @@
 #' Daily adjusted logarithmic returns for the Standard and Poor's 500
 #'
 #' A dataframe of the daily adjusted logarithmic returns for the Standard and Poor's 500 (S&P 500) stock market index. Each row corresponds to a
-#' trading day from 2018-01-01 to 2021-03-31. Data retrieved from Yahoo Finance using the \code{getSymbols()} function from the \code{quantmod}
+#' trading day from 2018-01-01 to 2021-03-31. Data was retrieved from Yahoo Finance using the \code{getSymbols()} function from the \code{quantmod}
 #' package.
 #'
 #' @format A dataframe with 815 rows and 500 columns/variables.

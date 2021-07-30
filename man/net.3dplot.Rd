@@ -7,7 +7,7 @@
 net.3dplot(A, ROIs = NULL, colors = NULL, coordROIs = NULL)
 }
 \arguments{
-\item{A}{An adjacency matrix to be plotted in numerical matrix format.}
+\item{A}{An adjacency matrix to be plotted (in numerical matrix format).}
 
 \item{ROIs}{Either a vector of character strings specifying the communities to plot, or a vector of integers specifying which ROIs to plot by their ID. By
 default it is set to NULL, and all communities and ROIs are plotted. Communities available for the Gordon atlas are: "Default", "SMhand", "SMmouth",
@@ -18,11 +18,11 @@ a predefined, unique color.}
 
 \item{coordROIs}{A dataframe of community tags and Montreal Neurological Institute (MNI) coordinates for regions of interest (ROIs) to plot, which is by
 default set to \code{NULL} and uses the Gordon atlas. See ?gordon.atlas for an example using the Gordon atlas. Format of the dataframe is as follows: first column
-is a string of community labels, then the subsequent three columns are the x, y, and z coordinates respectively. See \code{AALatlas} and \code{gordatlas}
+is a string of community labels, then the subsequent three columns are the x, y, and z coordinates, respectively. See \code{AALatlas} and \code{gordatlas}
 for examples.}
 }
 \value{
-A 3D network plot of an adjacency matrix between pairs of change points.
+A 3D network plot of an adjacency matrix between pairs of change points, or for data without change points.
 }
 \description{
 This function takes an adjacency matrix of a brain network and returns a 3D plot of it.

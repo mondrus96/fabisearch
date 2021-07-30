@@ -5,7 +5,7 @@
 \alias{AALfmri}
 \title{90 ROI data from the NYU test-retest resting state fMRI data set}
 \format{
-An object of class \code{data.frame} with 197 rows and 90 columns.
+A data matrix with 197 rows and 90 columns/variables, where each column corresponds to an ROI from the AAL atlas.
 }
 \source{
 \url{https://www.nitrc.org/projects/nyu_trt}
@@ -14,10 +14,7 @@ An object of class \code{data.frame} with 197 rows and 90 columns.
 AALfmri
 }
 \description{
-A data matrix of the second scan from the first subject from the NYU test-retest resting-state fMRI data set.
-}
-\details{
 A data matrix of the second scan from the first subject from the NYU test-retest resting-state fMRI data set. Variables/nodes are defined
-using the Tzourio-Mazoyer et al. (2002) AAL atlas, which can be accessed as the \code{AALatlas} dataframe.
+using the Tzourio-Mazoyer et al. (2002) Automatic Anatomical Labeling (AAL) atlas, which can be accessed as the \code{AALatlas} dataframe.
 }
 \keyword{datasets}
