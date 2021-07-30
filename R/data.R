@@ -64,10 +64,11 @@
 #' @source \url{https://doi.org/10.1006/nimg.2001.0978}
 "AALatlas"
 
-#' Daily logarithmic returns for the Standard and Poor's 500
+#' Daily adjusted logarithmic returns for the Standard and Poor's 500
 #'
-#' A dataframe of the daily logarithmic returns for the Standard and Poor's 500 (S&P 500) stock market index. Each row corresponds to a trading day
-#' from 2018-01-01 to 2021-03-31. Data retrieved from Yahoo Finance using the \code{getSymbols()} function from the \code{quantmod} package.
+#' A dataframe of the daily adjusted logarithmic returns for the Standard and Poor's 500 (S&P 500) stock market index. Each row corresponds to a
+#' trading day from 2018-01-01 to 2021-03-31. Data retrieved from Yahoo Finance using the \code{getSymbols()} function from the \code{quantmod}
+#' package.
 #'
 #' @format A dataframe with 815 rows and 500 columns/variables.
 
