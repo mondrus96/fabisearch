@@ -5,6 +5,9 @@
 #' @description This function detects multiple change points in the network (or clustering) structure of multivariate high-dimensional time series using
 #' non-negative matrix factorization and a binary search.
 #'
+#' @importFrom doParallel registerDoParallel
+#' @importFrom parallel detectCores
+#'
 #' @param Y An input multivariate time series in matrix format, with variables organized in columns and time points in rows.
 #' @param mindist A positive integer with default value equal to 35. It is used to define the minimum distance acceptable between detected change points.
 #' @param nruns A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.
@@ -88,6 +91,9 @@ detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, ra
 
   # Check whether any of the change points found have a negative change in loss, otherwise do not run rest of procedures
   if(any(orig.splits$chg.loss < 0)){
+    # Register parallel backend
+    registerDoParallel(detectCores())
+
     # Define the refitted splits
     refit.splits = refit_splits(orig.splits, Y, T, x, nreps, n.rank, algtype)
 

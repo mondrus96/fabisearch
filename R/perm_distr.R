@@ -3,7 +3,7 @@
 
 #' @importFrom NMF nmf
 #' @importFrom foreach foreach
-#' @import doParallel
+#' @import doRNG
 
 perm_distr = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type) {
 
@@ -14,9 +14,6 @@ perm_distr = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type) {
   # n.rep       = number of times to run the NMF algorithm for statistical inference
   # n.rank      = value of rank to use in the NMF function
   # alg.type    = algorithm type -> check ?nmf for details, under "method"
-
-  # Register parallel backend
-  registerDoParallel(detectCores())
 
   # Output will be saved as distr.results
   perm.results = list()
@@ -41,7 +38,7 @@ perm_distr = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type) {
     T.block = curr.subj[which(x<=upper1 & x>lower1),]
 
     # Loop through to find the sum of the left and right sides for each run
-    curr.results = foreach(i = 1:n.rep, .combine = "c", .export = "nmf") %dopar% {
+    curr.results = foreach(i = 1:n.rep, .combine = "c", .export = "nmf") %dorng% {
       perm.block = permute_split(T.block)
 
       # Fit NMF to the left and right sides
