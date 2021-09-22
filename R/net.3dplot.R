@@ -70,8 +70,7 @@ net.3dplot = function(A, ROIs = NULL, colors = NULL, coordROIs = NULL){
   par3d(windowRect = c(0, 0, 800, 800),zoom=0.7)
   mfrow3d(1,1,sharedMouse = T)
   plot3d(coord,col='grey',size=0.1,alpha=0.7,
-         box=F,axes=F,xlab='',ylab='',zlab='',
-         mar = c(0, 0, 0, 0))
+         box=F,axes=F,xlab='',ylab='',zlab='')
 
   # If input coordinates is not available, assume Gordon atlas
   if(is.null(coordROIs)){
