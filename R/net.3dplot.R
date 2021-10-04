@@ -74,7 +74,7 @@ net.3dplot = function(A, ROIs = NULL, colors = NULL, coordROIs = NULL){
 
   # If input coordinates is not available, assume Gordon atlas
   if(is.null(coordROIs)){
-    coordROIs = gordatlas
+    coordROIs = sys.gordatlas
   }
 
   # If ROIs is null, plot all ROIs
