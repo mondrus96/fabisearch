@@ -8,7 +8,7 @@
 A 333 * 333 matrix, where each entry takes a value 1 (0) if two nodes are (not) connected by an edge, using the Gordon atlas.
 }
 \source{
-\url{https://www.nitrc.org/projects/nyu_trt}
+\url{https://www.nitrc.org/projects/nyu_trt/}
 }
 \usage{
 adjmatrix

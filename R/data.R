@@ -17,7 +17,7 @@
 #'
 #' @format A data matrix with 197 rows and 333 columns/variables, where each column corresponds to an ROI from the Gordon atlas.
 #'
-#' @source \url{https://www.nitrc.org/projects/nyu_trt}
+#' @source \url{https://www.nitrc.org/projects/nyu_trt/}
 "gordfmri"
 
 #' 90 ROI data from the NYU test-retest resting state fMRI data set
@@ -27,7 +27,7 @@
 #'
 #' @format A data matrix with 197 rows and 90 columns/variables, where each column corresponds to an ROI from the AAL atlas.
 #'
-#' @source \url{https://www.nitrc.org/projects/nyu_trt}
+#' @source \url{https://www.nitrc.org/projects/nyu_trt/}
 "AALfmri"
 
 #' Adjacency matrix for the NYU test-restest resting-state fMRI data set
@@ -36,7 +36,7 @@
 #'
 #' @format A 333 * 333 matrix, where each entry takes a value 1 (0) if two nodes are (not) connected by an edge, using the Gordon atlas.
 #'
-#' @source \url{https://www.nitrc.org/projects/nyu_trt}
+#' @source \url{https://www.nitrc.org/projects/nyu_trt/}
 "adjmatrix"
 
 #' Gordon atlas coordinates
@@ -48,7 +48,7 @@
 #'
 #' @format A dataframe with 333 rows and 4 columns/variables.
 #'
-#' @source \url{https://doi.org/10.1093/cercor/bhu239}
+#' @source \doi{10.1093/cercor/bhu239}
 "gordatlas"
 
 #' Automated Anatomical Labeling (AAL) atlas coordinates
@@ -61,7 +61,7 @@
 #'
 #' @format A dataframe with 90 rows and 4 columns/variables.
 #'
-#' @source \url{https://doi.org/10.1006/nimg.2001.0978}
+#' @source \doi{10.1006/nimg.2001.0978}
 "AALatlas"
 
 #' Daily adjusted logarithmic returns for the Standard and Poor's 500

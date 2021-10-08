@@ -8,7 +8,7 @@
 A data matrix with 197 rows and 90 columns/variables, where each column corresponds to an ROI from the AAL atlas.
 }
 \source{
-\url{https://www.nitrc.org/projects/nyu_trt}
+\url{https://www.nitrc.org/projects/nyu_trt/}
 }
 \usage{
 AALfmri

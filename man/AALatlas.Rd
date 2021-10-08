@@ -8,7 +8,7 @@
 A dataframe with 90 rows and 4 columns/variables.
 }
 \source{
-\url{https://doi.org/10.1006/nimg.2001.0978}
+\doi{10.1006/nimg.2001.0978}
 }
 \usage{
 AALatlas

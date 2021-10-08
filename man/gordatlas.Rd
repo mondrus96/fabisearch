@@ -8,7 +8,7 @@
 A dataframe with 333 rows and 4 columns/variables.
 }
 \source{
-\url{https://doi.org/10.1093/cercor/bhu239}
+\doi{10.1093/cercor/bhu239}
 }
 \usage{
 gordatlas
