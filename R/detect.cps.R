@@ -20,6 +20,8 @@
 #' rank is used.
 #' @param algtype A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 #' \code{\link[NMF]{nmf}} for more information on the available algorithms.
+#' @param testtype A character string, which defines the type of statistical test to use during the inference procedure. By default it is set to "t-test". The
+#' other options are "ks" and "wilcox" which correspond to the Kolmogorov-Smirnov and Wilcoxon tests, respectively.
 #'
 #' @return A list with the following components :\cr
 #' \code{rank}: The rank used in the optimization procedure for change point detection.\cr
@@ -29,20 +31,20 @@
 #'
 #' @examples
 #' ## Change point detection for a multivariate data set, sim2, using the default settings
-#' \donttest{detect.cps(sim2)}
+#' \dontrun{detect.cps(sim2)}
 #'
 #' ## Change point detection for a multivariate data set, sim2, with an alpha value of 0.05
-#' \donttest{detect.cps(sim2, alpha = 0.05)}
+#' \dontrun{detect.cps(sim2, alpha = 0.05)}
 #'
 #' ## Change point detection for a multivariate data set, sim2, with a prespecified rank of 6
-#' \donttest{detect.cps(sim2, rank = 6)}
+#' \dontrun{detect.cps(sim2, rank = 6)}
 #'
 #' ## Change point detection for a multivariate data set, sim2, with non-default values
-#' \donttest{detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
+#' \dontrun{detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
 #' alpha = 0.001, rank = 7, algtype = "snmf/l")}
 #'
 #' ## Example output from the detect.cps() function
-#' \donttest{detect.cps(sim2, mindist = 50, nruns = 20)}
+#' \dontrun{detect.cps(sim2, mindist = 50, nruns = 20)}
 #'
 #' # $rank
 #' # [1] 5
@@ -59,7 +61,7 @@
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), <arXiv:2103.06347>.
 
-detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, rank = "optimal", algtype = "brunet"){
+detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, rank = "optimal", algtype = "brunet", testtype = "t-test"){
 
   # Find T as the number of rows in the input matrix
   T = nrow(Y)
@@ -101,7 +103,7 @@ detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, ra
     perm.distr = perm_distr(orig.splits, Y, T, x, nreps, n.rank, algtype)
 
     # Determine which splits are significant
-    sign.splits = sign_splits(orig.splits, refit.splits, perm.distr, alpha)
+    sign.splits = sign_splits(orig.splits, refit.splits, perm.distr, alpha, testtype)
   } else {
     # Initialize an empty dataframe
     sign.splits = data.frame(T = double(), stat_test = logical())

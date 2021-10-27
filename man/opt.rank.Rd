@@ -22,17 +22,17 @@ This function finds the optimal rank for non-negative matrix factorization (NMF)
 }
 \examples{
 ## Finding the optimal rank for an input data set "sim2" with the default settings
-\donttest{opt.rank(sim2)}
+\dontrun{opt.rank(sim2)}
 # [1] 3
 
 ## Finding the optimal rank for an input data set "sim2" with nruns of 100 and the
 ## default "brunet" algorithm
-\donttest{opt.rank(sim2, nruns = 100)}
+\dontrun{opt.rank(sim2, nruns = 100)}
 # [1] 3
 
 ## Finding the optimal rank for an input data set "sim2" using the "snmf/l"
 ## NMF method and the default nruns
-\donttest{opt.rank(sim2, algtype = "snmf/l")}
+\dontrun{opt.rank(sim2, algtype = "snmf/l")}
 # [1] 4
 
 }

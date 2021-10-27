@@ -23,18 +23,18 @@
 #'
 #' @examples
 #' ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default settings
-#' \donttest{net.3dplot(adjmatrix)}
+#' \dontrun{net.3dplot(adjmatrix)}
 #'
 #' ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default colours but only
 #' ## the "Visual", "FrontoParietal", and "Auditory" communities
 #' comms = c("Visual", "FrontoParietal", "Auditory")
-#' \donttest{net.3dplot(adjmatrix, ROIs = comms)}
+#' \dontrun{net.3dplot(adjmatrix, ROIs = comms)}
 #'
 #' ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with red, blue, and green
 #' ## nodes to denote the "Default", "SMhand", and "Visual" communities
 #' comms = c("Default", "SMhand", "Visual")
 #' colrs = c("#FF0000", "#00FF00", "#0000FF")
-#' \donttest{net.3dplot(adjmatrix, ROIs = comms, colors = colrs)}
+#' \dontrun{net.3dplot(adjmatrix, ROIs = comms, colors = colrs)}
 #'
 #' ## The default color palette is defined as follows
 #' ## c("#D32F2F", "#303F9F", "#388E3C", "#FFEB3B", "#03A9F4", "#FF9800", "#673AB7",

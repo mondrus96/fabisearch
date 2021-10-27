@@ -11,7 +11,8 @@ detect.cps(
   nreps = 100,
   alpha = 0.05,
   rank = "optimal",
-  algtype = "brunet"
+  algtype = "brunet",
+  testtype = "t-test"
 )
 }
 \arguments{
@@ -33,6 +34,9 @@ rank is used.}
 
 \item{algtype}{A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 \code{\link[NMF]{nmf}} for more information on the available algorithms.}
+
+\item{testtype}{A character string, which defines the type of statistical test to use during the inference procedure. By default it is set to "t-test". The
+other options are "ks" and "wilcox" which correspond to the Kolmogorov-Smirnov and Wilcoxon tests, respectively.}
 }
 \value{
 A list with the following components :\cr
@@ -46,20 +50,20 @@ non-negative matrix factorization and a binary search.
 }
 \examples{
 ## Change point detection for a multivariate data set, sim2, using the default settings
-\donttest{detect.cps(sim2)}
+\dontrun{detect.cps(sim2)}
 
 ## Change point detection for a multivariate data set, sim2, with an alpha value of 0.05
-\donttest{detect.cps(sim2, alpha = 0.05)}
+\dontrun{detect.cps(sim2, alpha = 0.05)}
 
 ## Change point detection for a multivariate data set, sim2, with a prespecified rank of 6
-\donttest{detect.cps(sim2, rank = 6)}
+\dontrun{detect.cps(sim2, rank = 6)}
 
 ## Change point detection for a multivariate data set, sim2, with non-default values
-\donttest{detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
+\dontrun{detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
 alpha = 0.001, rank = 7, algtype = "snmf/l")}
 
 ## Example output from the detect.cps() function
-\donttest{detect.cps(sim2, mindist = 50, nruns = 20)}
+\dontrun{detect.cps(sim2, mindist = 50, nruns = 20)}
 
 # $rank
 # [1] 5
