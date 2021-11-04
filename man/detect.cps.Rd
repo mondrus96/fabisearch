@@ -9,14 +9,14 @@ detect.cps(
   mindist = 35,
   nruns = 50,
   nreps = 100,
-  alpha = 0.05,
-  rank = "optimal",
+  alpha = NULL,
+  rank = NULL,
   algtype = "brunet",
   testtype = "t-test"
 )
 }
 \arguments{
-\item{Y}{An input multivariate time series in matrix format, with variables organized in columns and time points in rows.}
+\item{Y}{An input multivariate time series in matrix format, with variables organized in columns and time points in rows. All entries in Y must be positive.}
 
 \item{mindist}{A positive integer with default value equal to 35. It is used to define the minimum distance acceptable between detected change points.}
 
@@ -24,13 +24,11 @@ detect.cps(
 
 \item{nreps}{A positive integer with default value equal to 100. It is used to define the number of permutations for the statistical inference procedure.}
 
-\item{alpha}{A character string or a positive real number with default value equal to 0.05. If alpha = a positive integer value, say 0.05, then it is
-used to define the significance level for inference on the change points. If alpha = "p-value", then the p-value calculated for inference on the change
-points is returned.}
+\item{alpha}{A positive real number with default value set to NULL. When alpha = NULL, then the p-value calculated for inference on the change
+points is returned. If alpha = a positive integer value, say 0.05, then it is used to define the significance level for inference on the change points.}
 
-\item{rank}{A character string or a positive integer, which defines the rank used in the optimization procedure to detect the change points.
-If rank = "optimal", which is also the default value, then the optimal rank is used. If rank = a positive integer value, say 4, then a predetermined
-rank is used.}
+\item{rank}{A positive integer, which defines the rank used in the optimization procedure to detect the change points. If rank = NULL, which is also the
+default value, then the optimal rank is computed. If rank = a positive integer value, say 4, then a predetermined rank is used.}
 
 \item{algtype}{A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 \code{\link[NMF]{nmf}} for more information on the available algorithms.}

@@ -14,7 +14,7 @@ est.net(
 )
 }
 \arguments{
-\item{Y}{An input multivariate time series in matrix format, with variables organized in columns and time points in rows.}
+\item{Y}{An input multivariate time series in matrix format, with variables organized in columns and time points in rows. All entries in Y must be positive.}
 
 \item{lambda}{A positive real number, which defines the clustering method and/or the cutoff value when estimating an adjacency matrix from the computed
 consensus matrix. If lambda = a positive integer value, say 6, complete-linkage, hierarchical clustering is applied to the consensus matrix and the cutoff is at

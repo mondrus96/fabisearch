@@ -8,16 +8,14 @@
 #' @importFrom doParallel registerDoParallel
 #' @importFrom parallel detectCores
 #'
-#' @param Y An input multivariate time series in matrix format, with variables organized in columns and time points in rows.
+#' @param Y An input multivariate time series in matrix format, with variables organized in columns and time points in rows. All entries in Y must be positive.
 #' @param mindist A positive integer with default value equal to 35. It is used to define the minimum distance acceptable between detected change points.
 #' @param nruns A positive integer with default value equal to 50. It is used to define the number of runs in the NMF function.
 #' @param nreps A positive integer with default value equal to 100. It is used to define the number of permutations for the statistical inference procedure.
-#' @param alpha A character string or a positive real number with default value equal to 0.05. If alpha = a positive integer value, say 0.05, then it is
-#' used to define the significance level for inference on the change points. If alpha = "p-value", then the p-value calculated for inference on the change
-#' points is returned.
-#' @param rank A character string or a positive integer, which defines the rank used in the optimization procedure to detect the change points.
-#' If rank = "optimal", which is also the default value, then the optimal rank is used. If rank = a positive integer value, say 4, then a predetermined
-#' rank is used.
+#' @param alpha A positive real number with default value set to NULL. When alpha = NULL, then the p-value calculated for inference on the change
+#' points is returned. If alpha = a positive integer value, say 0.05, then it is used to define the significance level for inference on the change points.
+#' @param rank A positive integer, which defines the rank used in the optimization procedure to detect the change points. If rank = NULL, which is also the
+#' default value, then the optimal rank is computed. If rank = a positive integer value, say 4, then a predetermined rank is used.
 #' @param algtype A character string, which defines the algorithm to be used in the NMF function. By default it is set to "brunet". See the "Algorithms" section of
 #' \code{\link[NMF]{nmf}} for more information on the available algorithms.
 #' @param testtype A character string, which defines the type of statistical test to use during the inference procedure. By default it is set to "t-test". The
@@ -61,7 +59,7 @@
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), <arXiv:2103.06347>.
 
-detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, rank = "optimal", algtype = "brunet", testtype = "t-test"){
+detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = NULL, rank = NULL, algtype = "brunet", testtype = "t-test"){
 
   # Find T as the number of rows in the input matrix
   T = nrow(Y)
@@ -79,7 +77,7 @@ detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = 0.05, ra
   rownames(Y) = x
 
   # If rank has not been specified, then it must be found
-  if (rank == "optimal"){
+  if (is.null(rank)){
     n.rank = opt.rank(Y, nruns, algtype)
   } else {
     n.rank = rank

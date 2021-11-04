@@ -14,47 +14,30 @@ sign_splits = function(orig.splits, refit.splits, perm.distr, alpha, testtype){
   reduced.splits = sort(orig.splits[orig.splits$chg.loss < 0, ]$T.split)
   final.splits   = c()
 
-  if(!is.null(alpha)){
-    for (ji in 1:length(refit.splits)){
+  for (ji in 1:length(refit.splits)){
 
-      # Perform the statistical test, depending on whatever test was chosen
-      if (testtype == "t-test"){
-        stat.result = t.test(refit.splits[[ji]], perm.distr[[ji]], alternative = "less")$p.value
-      } else if (testtype == "wilcox"){
-        stat.result = wilcox.test(refit.splits[[ji]], perm.distr[[ji]], alternative = "less")$p.value
-      } else if (testtype == "ks"){
-        stat.result = ks.test(refit.splits[[ji]], perm.distr[[ji]], alternative = "greater")$p.value
-      }
-
-      # Adjust for multiple comparisons
-      stat.result = p.adjust(stat.result, method = "BH", n = length(refit.splits))
-
-      # Determine if the refitted value of loss is outside of the bounds of the distribution
-      if (is.numeric(alpha)){
-        final.splits = rbind(final.splits, data.frame(reduced.splits[ji], stat.result < alpha))
-      } else if (!is.numeric(alpha)){
-        final.splits = rbind(final.splits, data.frame(reduced.splits[ji], stat.result))
-      }
-    }
-    # Rename column
-    colnames(final.splits) = c("T", "stat_test")
-    rownames(final.splits) = NULL
-  } else if (is.null(alpha)){
-
-    # Create the final.splits list() variable
-    final.splits = list("refit" = NULL, "perm" = NULL)
-
-    for (ji in 1:length(refit.splits)){
-
-      # Save the results in two tables
-      final.splits$refit = cbind(final.splits$refit, refit.splits[[ji]])
-      final.splits$perm = cbind(final.splits$perm, perm.distr[[ji]])
+    # Perform the statistical test, depending on whatever test was chosen
+    if (testtype == "t-test"){
+      stat.result = t.test(refit.splits[[ji]], perm.distr[[ji]], alternative = "less")$p.value
+    } else if (testtype == "wilcox"){
+      stat.result = wilcox.test(refit.splits[[ji]], perm.distr[[ji]], alternative = "less")$p.value
+    } else if (testtype == "ks"){
+      stat.result = ks.test(refit.splits[[ji]], perm.distr[[ji]], alternative = "greater")$p.value
     }
 
-    # Rename columns and rows
-    colnames(final.splits$refit) = colnames(final.splits$perm) = reduced.splits
-    rownames(final.splits$refit) = rownames(final.splits$perm) = NULL
+    # Adjust for multiple comparisons
+    stat.result = p.adjust(stat.result, method = "BH", n = length(refit.splits))
+
+    # Determine if the refitted value of loss is outside of the bounds of the distribution
+    if (is.numeric(alpha)){
+      final.splits = rbind(final.splits, data.frame(reduced.splits[ji], stat.result < alpha))
+    } else if (is.null(alpha)){
+      final.splits = rbind(final.splits, data.frame(reduced.splits[ji], stat.result))
+    }
   }
+  # Rename column
+  colnames(final.splits) = c("T", "stat_test")
+  rownames(final.splits) = NULL
 
   return(final.splits)
 }
