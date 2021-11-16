@@ -21,19 +21,11 @@ A positive integer representing the optimal rank.
 This function finds the optimal rank for non-negative matrix factorization (NMF).
 }
 \examples{
+\donttest{
 ## Finding the optimal rank for an input data set "sim2" with the default settings
-\dontrun{opt.rank(sim2)}
+opt.rank(sim2)
 # [1] 3
-
-## Finding the optimal rank for an input data set "sim2" with nruns of 100 and the
-## default "brunet" algorithm
-\dontrun{opt.rank(sim2, nruns = 100)}
-# [1] 3
-
-## Finding the optimal rank for an input data set "sim2" using the "snmf/l"
-## NMF method and the default nruns
-\dontrun{opt.rank(sim2, algtype = "snmf/l")}
-# [1] 4
+}
 
 }
 \references{

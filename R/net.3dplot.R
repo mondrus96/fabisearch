@@ -22,29 +22,24 @@
 #' @export
 #'
 #' @examples
-#' ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default settings
-#' \dontrun{net.3dplot(adjmatrix)}
-#'
-#' ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with default colours but only
-#' ## the "Visual", "FrontoParietal", and "Auditory" communities
-#' comms = c("Visual", "FrontoParietal", "Auditory")
-#' \dontrun{net.3dplot(adjmatrix, ROIs = comms)}
-#'
+#' \donttest{
 #' ## Plotting a 333 * 333 adjacency matrix "adjmatrix" with red, blue, and green
 #' ## nodes to denote the "Default", "SMhand", and "Visual" communities
 #' comms = c("Default", "SMhand", "Visual")
 #' colrs = c("#FF0000", "#00FF00", "#0000FF")
-#' \dontrun{net.3dplot(adjmatrix, ROIs = comms, colors = colrs)}
-#'
-#' ## The default color palette is defined as follows
-#' ## c("#D32F2F", "#303F9F", "#388E3C", "#FFEB3B", "#03A9F4", "#FF9800", "#673AB7",
-#' ## "#CDDC39", "#9C27B0", "#795548", "#212121", "#009688", "#FFC0CB")
+#' net.3dplot(adjmatrix, ROIs = comms, colors = colrs)
+#' }
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), <arXiv:2103.06347>.
 
 net.3dplot = function(A, ROIs = NULL, colors = NULL, coordROIs = NULL){
+
+  # If not running interactively
+  if(!interactive()){
+    return(print("Must be running session interactively to visualize with RGL plots"))
+  }
 
   # If colors are null, define a color palette
   if(is.null(colors)){

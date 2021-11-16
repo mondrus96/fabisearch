@@ -29,27 +29,11 @@
 #' @export
 #'
 #' @examples
-#' ## Estimating the network for a multivariate data set, "sim2" using default settings
-#' \dontrun{est.net(sim2)}
-#'
-#' ## Estimating the network for a multivariate data set, "sim2", using hierarchical
-#' ## clustering to generate the adjacency matrix with a cutoff value of 7 clusters
-#' \dontrun{est.net(sim2, nruns = 100, lambda = 7)}
-#'
-#' ## Estimating the network for a multivariate data set, "sim2", and using a cutoff
-#' ## value for the adjacency matrix to enforce sparsity, where the cutoff is 0.5
-#' \dontrun{est.net(sim2, nruns = 100, lambda = 0.5)}
-#'
-#' ## Estimating the network for a multivariate data set, "sim2"
-#' \dontrun{est.net(sim2, rank = 4)}
-#'
-#' ## Estimating the network for a multivariate data set, "sim2", using the "snmf/l"
-#' ## algorithm for NMF
-#' \dontrun{est.net(sim2, algtype = "snmf/l")}
-#'
-#' ## Estimating the network for a multivariate data set, "sim2", with a changepoint
-#' ## at time index 100
-#' \dontrun{est.net(sim2, algtype = "snmf/l", changepoints = 100)}
+#' \donttest{
+#' ## Estimating the network for a multivariate data set, "sim2" with the settings:
+#' ## nruns = 10 and lambda = 0.5 where the latter specifies the cutoff based method
+#' est.net(sim2, lambda = 0.5, nruns = 10)
+#' }
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
@@ -68,7 +52,7 @@ est.net = function(Y, lambda, nruns = 50, rank = "optimal", algtype = "brunet", 
     print(paste("User defined rank:", n.rank))
   }
 
-  # Convert dat aset to a list
+  # Convert dataset to a list
   if(!is.null(changepoints)){
     changepoints = c(0, changepoints, nrow(Y))
     Y.split = list()

@@ -47,29 +47,20 @@ This function detects multiple change points in the network (or clustering) stru
 non-negative matrix factorization and a binary search.
 }
 \examples{
-## Change point detection for a multivariate data set, sim2, using the default settings
-\dontrun{detect.cps(sim2)}
-
-## Change point detection for a multivariate data set, sim2, with an alpha value of 0.05
-\dontrun{detect.cps(sim2, alpha = 0.05)}
-
-## Change point detection for a multivariate data set, sim2, with a prespecified rank of 6
-\dontrun{detect.cps(sim2, rank = 6)}
-
-## Change point detection for a multivariate data set, sim2, with non-default values
-\dontrun{detect.cps(sim2, mindist = 50, nruns = 100, nreps = 1000,
-alpha = 0.001, rank = 7, algtype = "snmf/l")}
-
-## Example output from the detect.cps() function
-\dontrun{detect.cps(sim2, mindist = 50, nruns = 20)}
+\donttest{
+## Change point detection for a multivariate data set, sim2, using settings:
+## mindist = 50, nruns = 25, and nreps = 50
+set.seed(123)
+detect.cps(sim2, mindist = 50, nruns = 25, nreps = 50)
+}
 
 # $rank
-# [1] 5
+# [1] 4
 #
 # $change_points
-#    T stat_test
-# 1  99      TRUE
-# 2 148     FALSE
+#     T    stat_test
+# 1  99 1.531421e-05
+# 2 148 1.000000e+00
 #
 # $compute_time
 # Time difference of 15.8113 mins

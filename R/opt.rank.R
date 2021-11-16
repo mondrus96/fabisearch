@@ -15,19 +15,11 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' ## Finding the optimal rank for an input data set "sim2" with the default settings
-#' \dontrun{opt.rank(sim2)}
+#' opt.rank(sim2)
 #' # [1] 3
-#'
-#' ## Finding the optimal rank for an input data set "sim2" with nruns of 100 and the
-#' ## default "brunet" algorithm
-#' \dontrun{opt.rank(sim2, nruns = 100)}
-#' # [1] 3
-#'
-#' ## Finding the optimal rank for an input data set "sim2" using the "snmf/l"
-#' ## NMF method and the default nruns
-#' \dontrun{opt.rank(sim2, algtype = "snmf/l")}
-#' # [1] 4
+#' }
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
