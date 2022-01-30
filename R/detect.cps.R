@@ -31,21 +31,20 @@
 #' @examples
 #' \donttest{
 #' ## Change point detection for a multivariate data set, sim2, using settings:
-#' ## mindist = 50, nruns = 25, and nreps = 50
+#' ## rank = 3, mindist = 99, nruns = 2, and nreps = 2
 #' set.seed(123)
-#' detect.cps(sim2, mindist = 50, nruns = 25, nreps = 50)
+#' detect.cps(sim2, rank = 3, mindist = 99, nruns = 2, nreps = 2)
 #' }
 #'
 #' # $rank
-#' # [1] 4
+#' # [1] 3
 #' #
 #' # $change_points
-#' #     T    stat_test
-#' # 1  99 1.531421e-05
-#' # 2 148 1.000000e+00
+#' #     T stat_test
+#' # 1 101 0.3867274
 #' #
 #' # $compute_time
-#' # Time difference of 15.8113 mins
+#' # Time difference of 0.741534 mins
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.

@@ -17,8 +17,8 @@
 #' @examples
 #' \donttest{
 #' ## Finding the optimal rank for an input data set "sim2" with the default settings
-#' opt.rank(sim2)
-#' # [1] 3
+#' opt.rank(sim2, nruns = 4)
+#' # [1] 2
 #' }
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}

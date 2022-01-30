@@ -32,7 +32,7 @@
 #' \donttest{
 #' ## Estimating the network for a multivariate data set, "sim2" with the settings:
 #' ## nruns = 10 and lambda = 0.5 where the latter specifies the cutoff based method
-#' est.net(sim2, lambda = 0.5, nruns = 10)
+#' est.net(sim2, lambda = 0.5, nruns = 4)
 #' }
 #'
 #' @author Martin Ondrus, \email{mondrus@ualberta.ca}, Ivor Cribben, \email{cribben@ualberta.ca}
