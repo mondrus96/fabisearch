@@ -105,8 +105,8 @@ split_all = function(data, split.index, lower, upper, x, min.dist, n.runs, n.ran
       }
 
       # Define the start and end points of the block to be evaluated
-      T.start = T.split - min.dist
-      T.end   = T.split + 1 + min.dist
+      T.start = T.split - min.dist + 1
+      T.end   = T.split + min.dist
 
       # Fit the unsplit data as orig.loss and the split data as split.loss
       orig.loss  = nmf(data[which(x>=T.start & x<=T.end),], rank = n.rank, nrun = n.runs, method = alg.type)@residuals
@@ -123,7 +123,7 @@ split_all = function(data, split.index, lower, upper, x, min.dist, n.runs, n.ran
 
     # Apply the function exhaustively
     split.index = Recall(data, split.index, lower, T.split, x, min.dist, n.runs, n.rank, alg.type)
-    split.index = Recall(data, split.index, T.split, upper, x, min.dist, n.runs, n.rank, alg.type)
+    split.index = Recall(data, split.index, T.split + 1, upper, x, min.dist, n.runs, n.rank, alg.type)
   }
   return(split.index)
 }
