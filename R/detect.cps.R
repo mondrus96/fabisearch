@@ -24,7 +24,7 @@
 #'
 #' @return A list with the following components :\cr
 #' \code{rank}: The rank used in the optimization procedure for change point detection.\cr
-#' \code{change_points}: A table of the detected change points where column "T" is the time of the change point and "stat_test" is the result (either a boolean value if alpha = a positive real number, or the p-value if alpha = "p-value") of the t-test.\cr
+#' \code{change_points}: A table of the detected change points where column "T" is the time of the change point and "stat_test" is the result (either a boolean value if alpha = a positive real number, or the p-value if alpha = NULL) of the t-test.\cr
 #' \code{compute_time}: The computational time, saved as a "difftime" object.\cr
 #' @export
 #'

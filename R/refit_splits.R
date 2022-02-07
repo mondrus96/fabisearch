@@ -3,6 +3,7 @@
 
 #' @importFrom NMF nmf
 #' @importFrom foreach foreach
+#' @import doRNG
 
 refit_splits = function(orig.splits, curr.subj, T, x, n.rep, n.rank, alg.type){
 
