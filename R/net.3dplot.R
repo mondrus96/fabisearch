@@ -75,7 +75,7 @@ net.3dplot = function(A, ROIs = NULL, colors = NULL, coordROIs = NULL){
   # If ROIs is null, plot all ROIs
   if(is.null(ROIs)){
     ROIs = coordROIs
-  } else if (class(ROIs) == "character"){
+  } else if (is.character(ROIs)){
     ROIs = coordROIs[coordROIs[,1] %in% ROIs, ]
   } else if (is.numeric(ROIs)){
     ROIs = coordROIs[1:nrow(coordROIs) %in% ROIs, ]
