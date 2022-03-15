@@ -4,7 +4,7 @@
 #' 3D network plot of an adjacency matrix between pairs of change points
 #' @description This function takes an adjacency matrix of a brain network and returns a 3D plot of it.
 #'
-#' @importFrom rgl par3d mfrow3d plot3d lines3d legend3d
+#' @importFrom rgl par3d mfrow3d plot3d lines3d legend3d text3d
 #' @importFrom reshape2 melt
 #'
 #' @param A An adjacency matrix to be plotted (in numerical matrix format).
@@ -17,6 +17,8 @@
 #' default set to \code{NULL} and uses the Gordon atlas. See ?gordon.atlas for an example using the Gordon atlas. Format of the dataframe is as follows: first column
 #' is a string of community labels, then the subsequent three columns are the x, y, and z coordinates, respectively. See \code{AALatlas} and \code{gordatlas}
 #' for examples.
+#' @param labels A boolean value denoting whether to add labels to nodes; if set to TRUE, this will add node labels to the plot, and if set to FALSE, will not.
+#' By default this is set to FALSE.
 #'
 #' @return A 3D network plot of an adjacency matrix between pairs of change points, or for data without change points.
 #' @export
@@ -34,7 +36,7 @@
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), <arXiv:2103.06347>.
 
-net.3dplot = function(A, ROIs = NULL, colors = NULL, coordROIs = NULL){
+net.3dplot = function(A, ROIs = NULL, colors = NULL, coordROIs = NULL, labels = FALSE){
 
   # If not running interactively
   if(!interactive()){
@@ -117,11 +119,17 @@ net.3dplot = function(A, ROIs = NULL, colors = NULL, coordROIs = NULL){
   }
 
   # Plot the edges in ma3d
-  for (i in 1:dim(ma3d)[1]) {
+  for(i in 1:dim(ma3d)[1]) {
     lines3d(coordROIs[unlist(ma3d[i,1:2]), 2:4],
             size=2,
             add=T,
             col="black",
             alpha=0.4)
+  }
+
+  # Add node labels if labels == TRUE
+  if(labels == TRUE){
+    # Add the text labels
+    text3d(ROIs[,2:4], texts = rownames(ROIs), pos = 4, offset = 0.7)
   }
 }

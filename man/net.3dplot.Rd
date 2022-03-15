@@ -4,7 +4,7 @@
 \alias{net.3dplot}
 \title{3D network plot of an adjacency matrix between pairs of change points}
 \usage{
-net.3dplot(A, ROIs = NULL, colors = NULL, coordROIs = NULL)
+net.3dplot(A, ROIs = NULL, colors = NULL, coordROIs = NULL, labels = FALSE)
 }
 \arguments{
 \item{A}{An adjacency matrix to be plotted (in numerical matrix format).}
@@ -20,6 +20,9 @@ a predefined, unique color.}
 default set to \code{NULL} and uses the Gordon atlas. See ?gordon.atlas for an example using the Gordon atlas. Format of the dataframe is as follows: first column
 is a string of community labels, then the subsequent three columns are the x, y, and z coordinates, respectively. See \code{AALatlas} and \code{gordatlas}
 for examples.}
+
+\item{labels}{A boolean value denoting whether to add labels to nodes; if set to TRUE, this will add node labels to the plot, and if set to FALSE, will not.
+By default this is set to FALSE.}
 }
 \value{
 A 3D network plot of an adjacency matrix between pairs of change points, or for data without change points.

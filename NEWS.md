@@ -1,4 +1,6 @@
-# fabisearch 0.0.4.2
+# fabisearch 0.0.4.4
 
-### Minor Changes ###
-1. Minor changes to some of the text/explanation of how the functions work as well as the included datasets.
+## Minor Changes ##
+### net.3dplot ###
+1. nodes are now plotted as 3D spheres instead of circles.
+2. option "labels" (which by default is set to FALSE), if set to TRUE will add node labels based on the node ID in the specified atlas.
