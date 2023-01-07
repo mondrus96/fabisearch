@@ -7,7 +7,6 @@
 #'
 #' @importFrom doParallel registerDoParallel stopImplicitCluster
 #' @importFrom parallel detectCores
-#' @importFrom pkgmaker isCHECK
 #'
 #' @param Y An input multivariate time series in matrix format, with variables organized in columns and time points in rows. All entries in Y must be positive.
 #' @param mindist A positive integer with default value equal to 35. It is used to define the minimum distance acceptable between detected change points.
@@ -21,6 +20,7 @@
 #' \code{\link[NMF]{nmf}} for more information on the available algorithms.
 #' @param testtype A character string, which defines the type of statistical test to use during the inference procedure. By default it is set to "t-test". The
 #' other options are "ks" and "wilcox" which correspond to the Kolmogorov-Smirnov and Wilcoxon tests, respectively.
+#' @param ncore A positive integer with default value equal to 1. It is used to define the number of cores to use in the procedure
 #'
 #' @return A list with the following components :\cr
 #' \code{rank}: The rank used in the optimization procedure for change point detection.\cr
@@ -50,7 +50,7 @@
 #' @references "Factorized Binary Search: a novel technique for change point detection in multivariate high-dimensional time series networks", Ondrus et al.
 #' (2021), <arXiv:2103.06347>.
 
-detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = NULL, rank = NULL, algtype = "brunet", testtype = "t-test"){
+detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = NULL, rank = NULL, algtype = "brunet", testtype = "t-test", ncore = 1){
 
   # Find T as the number of rows in the input matrix
   T = nrow(Y)
@@ -82,11 +82,9 @@ detect.cps = function(Y, mindist = 35, nruns = 50, nreps = 100, alpha = NULL, ra
 
   # Check whether any of the change points found have a negative change in loss, otherwise do not run rest of procedures
   if(any(orig.splits$chg.loss < 0)){
-    # Register parallel backend, use maximum number of cores unless running a CRAN check
-    if(isCHECK()){
-      registerDoParallel(min(detectCores(), 2))
-    } else if (!isCHECK()){
-      registerDoParallel(detectCores())
+    # Register parallel backend if relevant
+    if(ncore > 1){
+      registerDoParallel(ncore)
     }
 
     # Define the refitted splits

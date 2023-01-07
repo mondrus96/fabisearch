@@ -12,7 +12,8 @@ detect.cps(
   alpha = NULL,
   rank = NULL,
   algtype = "brunet",
-  testtype = "t-test"
+  testtype = "t-test",
+  ncore = 1
 )
 }
 \arguments{
@@ -35,6 +36,8 @@ default value, then the optimal rank is computed. If rank = a positive integer v
 
 \item{testtype}{A character string, which defines the type of statistical test to use during the inference procedure. By default it is set to "t-test". The
 other options are "ks" and "wilcox" which correspond to the Kolmogorov-Smirnov and Wilcoxon tests, respectively.}
+
+\item{ncore}{A positive integer with default value equal to 1. It is used to define the number of cores to use in the procedure}
 }
 \value{
 A list with the following components :\cr
