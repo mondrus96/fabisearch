@@ -1,4 +1,4 @@
-#R package for FaBiSearch
+# R package for FaBiSearch
 
 R implementation of "FaBiSearch" for change point detection, also available on CRAN at https://CRAN.R-project.org/package=fabisearch
 
